@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0d0b0a;font-family:'Archivo',system-ui,sans-serif;color:#f5f2ee;}
+a{color:#f87171;text-decoration:none} a:hover{color:#fca5a5}
+input,select,button{font-family:'Archivo',system-ui,sans-serif;}
+*{box-sizing:border-box}
+</style>
+</helmet>
+
+<div style="padding:44px 48px 80px;">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div style="background:#faf8f5;border-radius:12px;padding:10px 14px;"><img src="uploads/galerim_logo.png" alt="Galerim" style="width:110px;display:block;"></div>
+    <div>
+      <div style="font-size:16px;font-weight:900;font-style:italic;color:#fff;">Mobil Uygulama v2 — Koyu Premium</div>
+      <div style="font-size:12px;color:#8a8177;margin-top:2px;">iPhone çerçevesi tıklanabilir prototiptir · Android görsel eşdeğerdir</div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:44px;margin-top:32px;align-items:flex-start;flex-wrap:wrap;">
+
+    <!-- ================= iOS: İNTERAKTİF ================= -->
+    <div style="display:flex;flex-direction:column;gap:10px;" data-screen-label="iOS interaktif v2">
+      <div style="font-size:12px;font-weight:800;color:#f87171;text-transform:uppercase;letter-spacing:.06em;">iOS · İnteraktif</div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="400px,860px">
+
+        <div style="display:flex;flex-direction:column;height:100%;background:#131110;color:#f5f2ee;">
+
+          <!-- Header (safe-area üst boşluk: status bar overlay) -->
+          <div style="flex:none;padding:62px 20px 14px;display:flex;align-items:center;gap:12px;">
+            <div style="flex:1;">
+              <div style="font-size:11px;font-weight:700;color:#8a8177;letter-spacing:.04em;">DEMO GALERİ</div>
+              <div style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:-0.02em;margin-top:1px;">{{ mBaslik }}</div>
+            </div>
+            <div style="width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,#2a1414,#B91C1C);border:1px solid #B91C1C55;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;">DG</div>
+          </div>
+
+          <!-- Content -->
+          <div style="flex:1;overflow-y:auto;padding:2px 16px 10px;">
+
+            <!-- GENEL -->
+            <sc-if value="{{ mGenel }}" hint-placeholder-val="{{ true }}">
+              <!-- Hero kâr kartı -->
+              <div style="background:linear-gradient(140deg,#B91C1C 0%,#7a1010 55%,#3a0a0a 100%);border-radius:24px;padding:22px 20px;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.07);"></div>
+                <div style="position:absolute;bottom:-60px;right:30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.05);"></div>
+                <div style="font-size:11px;font-weight:800;color:#ffd0d0;letter-spacing:.08em;">BU DÖNEM NET KÂR</div>
+                <div style="font-size:36px;font-weight:900;letter-spacing:-0.03em;margin-top:6px;font-style:italic;">{{ hKar }}</div>
+                <div style="display:flex;gap:8px;margin-top:14px;">
+                  <span style="white-space:nowrap;font-size:11px;font-weight:800;background:rgba(255,255,255,.16);backdrop-filter:blur(4px);padding:6px 12px;border-radius:999px;">{{ hSatisSayi }} satış</span>
+                  <span style="white-space:nowrap;font-size:11px;font-weight:800;background:rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;">{{ hCiro }} ciro</span>
+                  <span style="white-space:nowrap;font-size:11px;font-weight:800;background:rgba(74,222,128,.25);color:#bbf7d0;padding:6px 12px;border-radius:999px;">▲ %18</span>
+                </div>
+              </div>
+
+              <!-- Mini statlar -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
+                <sc-for list="{{ mStat }}" as="st" hint-placeholder-count="4">
+                  <div style="background:#1d1a18;border:1px solid #2b2724;border-radius:18px;padding:15px;">
+                    <div style="font-size:10px;color:#8a8177;font-weight:800;letter-spacing:.05em;">{{ st.label }}</div>
+                    <div style="font-size:20px;font-weight:900;margin-top:5px;letter-spacing:-0.02em;">{{ st.value }}</div>
+                    <div style="font-size:10.5px;margin-top:3px;color:{{ st.subColor }};font-weight:700;">{{ st.sub }}</div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <!-- Grafik -->
+              <div style="background:#1d1a18;border:1px solid #2b2724;border-radius:18px;padding:18px;margin-top:12px;">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                  <div style="font-size:13px;font-weight:800;">Aylık Kâr</div>
+                  <div style="font-size:10.5px;color:#8a8177;font-weight:700;">Son 6 ay</div>
+                </div>
+                <div style="display:flex;align-items:flex-end;gap:9px;height:92px;margin-top:14px;">
+                  <sc-for list="{{ mBars }}" as="cb" hint-placeholder-count="6">
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;height:100%;justify-content:flex-end;">
+                      <div style="width:100%;max-width:24px;border-radius:99px;background:{{ cb.bg }};height:{{ cb.h }};"></div>
+                      <div style="font-size:9.5px;color:{{ cb.tc }};font-weight:800;">{{ cb.ay }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+
+              <!-- Hareketler -->
+              <div style="background:#1d1a18;border:1px solid #2b2724;border-radius:18px;padding:18px;margin-top:12px;">
+                <div style="font-size:13px;font-weight:800;">Son Hareketler</div>
+                <sc-for list="{{ mHareket }}" as="h" hint-placeholder-count="3">
+                  <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #26221f;align-items:center;">
+                    <span style="width:32px;height:32px;border-radius:11px;flex:none;background:{{ h.ibg }};color:{{ h.ic }};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;">{{ h.ikon }}</span>
+                    <div style="min-width:0;"><div style="font-size:12px;font-weight:700;">{{ h.text }}</div><div style="font-size:10.5px;color:#8a8177;margin-top:1px;">{{ h.when }}</div></div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <!-- ARAÇLAR -->
+            <sc-if value="{{ mAraclar }}" hint-placeholder-val="{{ false }}">
+              <sc-if value="{{ mDetayYok }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;gap:8px;margin-bottom:14px;">
+                  <button onClick="{{ mTabStok }}" style="border:1px solid {{ mtStokBc }};cursor:pointer;border-radius:999px;padding:9px 18px;font-size:12px;font-weight:800;background:{{ mtStokBg }};color:{{ mtStokC }};">Stokta {{ mStokSayi }}</button>
+                  <button onClick="{{ mTabSatilan }}" style="border:1px solid {{ mtSatBc }};cursor:pointer;border-radius:999px;padding:9px 18px;font-size:12px;font-weight:800;background:{{ mtSatBg }};color:{{ mtSatC }};">Satılan {{ mSatilanSayi }}</button>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <sc-for list="{{ mAracRows }}" as="v" hint-placeholder-count="4">
+                    <button onClick="{{ v.ac }}" style="text-align:left;background:#1d1a18;border:1px solid #2b2724;border-radius:20px;padding:14px;cursor:pointer;display:flex;gap:13px;align-items:center;min-height:44px;color:#f5f2ee;" style-hover="border-color:#B91C1C;">
+                      <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#2b2724,#3a3430);display:flex;align-items:center;justify-content:center;flex:none;position:relative;overflow:hidden;">
+                        <span style="font-size:17px;font-weight:900;font-style:italic;color:#6b6259;">{{ v.harf }}</span>
+                        <span style="position:absolute;bottom:0;left:0;right:0;height:3px;background:{{ v.serit }};"></span>
+                      </div>
+                      <div style="flex:1;min-width:0;">
+                        <div style="font-size:13.5px;font-weight:800;">{{ v.ad }}</div>
+                        <div style="font-size:10.5px;color:#8a8177;margin-top:3px;font-weight:600;">{{ v.alt }}</div>
+                      </div>
+                      <div style="text-align:right;flex:none;">
+                        <div style="font-size:14px;font-weight:900;color:{{ v.fiyatColor }};letter-spacing:-0.02em;">{{ v.fiyat }}</div>
+                        <div style="font-size:9.5px;color:#8a8177;margin-top:2px;font-weight:700;">{{ v.fiyatAlt }}</div>
+                      </div>
+                    </button>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <!-- Araç detay -->
+              <sc-if value="{{ mDetayVar }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ mDetayKapat }}" style="border:none;background:none;cursor:pointer;color:#f87171;font-weight:800;font-size:13px;padding:0 0 12px;">← Araçlarım</button>
+                <div style="height:160px;border-radius:22px;background:linear-gradient(135deg,#2b2724,#1d1a18);border:1px solid #2b2724;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+                  <span style="font-size:56px;font-weight:900;font-style:italic;color:#3a3430;">{{ mdHarf }}</span>
+                  <span style="position:absolute;top:14px;left:14px;font-size:10px;font-weight:800;background:rgba(185,28,28,.9);color:#fff;padding:5px 12px;border-radius:999px;letter-spacing:.05em;">STOKTA</span>
+                </div>
+                <div style="margin-top:14px;">
+                  <div style="font-size:19px;font-weight:900;font-style:italic;letter-spacing:-0.01em;">{{ mdAd }}</div>
+                  <div style="font-size:11.5px;color:#8a8177;margin-top:3px;font-weight:600;">{{ mdAlt }}</div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px;">
+                  <sc-for list="{{ mdDetay }}" as="d" hint-placeholder-count="6">
+                    <div style="background:#1d1a18;border:1px solid #2b2724;border-radius:14px;padding:11px 13px;">
+                      <div style="font-size:9.5px;color:#8a8177;font-weight:800;letter-spacing:.05em;">{{ d.k }}</div>
+                      <div style="font-size:13px;font-weight:800;margin-top:3px;">{{ d.v }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="background:linear-gradient(140deg,#B91C1C,#5a0f0f);border-radius:20px;padding:18px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;">
+                  <div>
+                    <div style="font-size:10px;font-weight:800;color:#ffd0d0;letter-spacing:.07em;">BEKLENEN KÂR</div>
+                    <div style="font-size:24px;font-weight:900;letter-spacing:-0.02em;font-style:italic;">{{ mdKar }}</div>
+                  </div>
+                  <div style="text-align:right;font-size:10.5px;color:#ffd0d0;font-weight:700;line-height:1.6;">Alış {{ mdAlis }}<br>Masraf {{ mdMasraf }}</div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:12px;">
+                  <button onClick="{{ mdSat }}" style="flex:1;border:none;cursor:pointer;background:#f5f2ee;color:#131110;font-weight:900;font-size:13.5px;padding:15px 0;border-radius:16px;">Bu aracı sat</button>
+                  <button style="flex:1;border:1px solid #3a3430;cursor:pointer;background:#1d1a18;color:#f5f2ee;font-weight:700;font-size:13.5px;padding:15px 0;border-radius:16px;">Masraf ekle</button>
+                </div>
+              </sc-if>
+            </sc-if>
+
+            <!-- ALIŞ -->
+            <sc-if value="{{ mAlis }}" hint-placeholder-val="{{ false }}">
+              <div style="border:1.5px dashed #3a3430;border-radius:20px;padding:20px;text-align:center;color:#8a8177;font-size:12px;font-weight:700;background:#1d1a18;">📷 Araç fotoğrafı çek veya yükle</div>
+              <div style="background:#1d1a18;border:1px solid #2b2724;border-radius:20px;padding:16px;margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <label style="display:block;grid-column:1/-1;"><span style="font-size:9.5px;font-weight:800;color:#8a8177;letter-spacing:.06em;">MARKA / MODEL *</span><input value="{{ maAd.val }}" onChange="{{ maAd.on }}" placeholder="Renault Clio 1.0 TCe" style="width:100%;margin-top:5px;border:1px solid #3a3430;border-radius:12px;padding:12px;font-size:13px;background:#131110;color:#f5f2ee;" style-focus="border-color:#B91C1C;outline:none;"></label>
+                <label style="display:block;"><span style="font-size:9.5px;font-weight:800;color:#8a8177;letter-spacing:.06em;">PLAKA</span><input value="{{ maPlaka.val }}" onChange="{{ maPlaka.on }}" placeholder="34 ABC 123" style="width:100%;margin-top:5px;border:1px solid #3a3430;border-radius:12px;padding:12px;font-size:13px;background:#131110;color:#f5f2ee;" style-focus="border-color:#B91C1C;outline:none;"></label>
+                <label style="display:block;"><span style="font-size:9.5px;font-weight:800;color:#8a8177;letter-spacing:.06em;">KM</span><input value="{{ maKm.val }}" onChange="{{ maKm.on }}" placeholder="85.000" style="width:100%;margin-top:5px;border:1px solid #3a3430;border-radius:12px;padding:12px;font-size:13px;background:#131110;color:#f5f2ee;" style-focus="border-color:#B91C1C;outline:none;"></label>
+                <label style="display:block;"><span style="font-size:9.5px;font-weight:800;color:#8a8177;letter-spacing:.06em;">ALIŞ FİYATI (₺) *</span><input value="{{ maAlisF.val }}" onChange="{{ maAlisF.on }}" placeholder="850.000" style="width:100%;margin-top:5px;border:1px solid #3a3430;border-radius:12px;padding:12px;font-size:13px;background:#131110;color:#f5f2ee;font-weight:800;" style-focus="border-color:#B91C1C;outline:none;"></label>
+                <label style="display:block;"><span style="font-size:9.5px;font-weight:800;color:#8a8177;letter-spacing:.06em;">HEDEF SATIŞ (₺)</span><input value="{{ maHedef.val }}" onChange="{{ maHedef.on }}" placeholder="950.000" style="width:100%;margin-top:5px;border:1px solid #3a3430;border-radius:12px;padding:12px;font-size:13px;background:#131110;color:#f5f2ee;font-weight:800;" style-focus="border-color:#B91C1C;outline:none;"></label>
+              </div>
+              <div style="background:#1d1a18;border:1px solid #2b2724;border-radius:20px;padding:16px;margin-top:12px;">
+                <div style="font-size:13px;font-weight:800;">Ekspertiz Raporu</div>
+                <div style="font-size:10px;color:#8a8177;margin-top:2px;font-weight:700;">Parçaya dokunarak durumu değiştirin</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;background:#131110;border:1px solid #2b2724;border-radius:16px;padding:10px;margin-top:12px;">
+                  <sc-for list="{{ mEks }}" as="p" hint-placeholder-count="11">
+                    <button onClick="{{ p.tik }}" style="grid-area:{{ p.area }};border:1px solid {{ p.bc }};background:{{ p.bg }};color:{{ p.color }};cursor:pointer;border-radius:10px;padding:8px 3px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:46px;">
+                      <span style="font-size:8.5px;font-weight:800;text-align:center;line-height:1.15;">{{ p.ad }}</span>
+                      <span style="font-size:8px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;">{{ p.durum }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+                <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+                  <span style="display:flex;align-items:center;gap:4px;font-size:9.5px;color:#8a8177;font-weight:700;"><span style="width:8px;height:8px;border-radius:3px;background:#22c55e;"></span>Orijinal</span>
+                  <span style="display:flex;align-items:center;gap:4px;font-size:9.5px;color:#8a8177;font-weight:700;"><span style="width:8px;height:8px;border-radius:3px;background:#eab308;"></span>Lokal</span>
+                  <span style="display:flex;align-items:center;gap:4px;font-size:9.5px;color:#8a8177;font-weight:700;"><span style="width:8px;height:8px;border-radius:3px;background:#f97316;"></span>Boyalı</span>
+                  <span style="display:flex;align-items:center;gap:4px;font-size:9.5px;color:#8a8177;font-weight:700;"><span style="width:8px;height:8px;border-radius:3px;background:#ef4444;"></span>Değişen</span>
+                </div>
+              </div>
+              <button onClick="{{ maKaydet }}" style="width:100%;margin-top:12px;border:none;cursor:pointer;background:linear-gradient(120deg,#B91C1C,#7a1010);color:#fff;font-weight:900;font-size:14px;padding:16px;border-radius:16px;">Aracı Kaydet</button>
+            </sc-if>
+
+            <!-- SATIŞ -->
+            <sc-if value="{{ mSatis }}" hint-placeholder-val="{{ false }}">
+              <div style="background:#1d1a18;border:1px solid #2b2724;border-radius:20px;padding:16px;">
+                <label style="display:block;"><span style="font-size:9.5px;font-weight:800;color:#8a8177;letter-spacing:.06em;">SATILACAK ARAÇ</span>
+                  <select value="{{ msSel }}" onChange="{{ msSelOn }}" style="width:100%;margin-top:5px;border:1px solid #3a3430;border-radius:12px;padding:13px 8px;font-size:13px;background:#131110;color:#f5f2ee;">
+                    <sc-for list="{{ msOpts }}" as="o" hint-placeholder-count="4"><option value="{{ o.id }}">{{ o.ad }}</option></sc-for>
+                  </select>
+                </label>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
+                  <label style="display:block;"><span style="font-size:9.5px;font-weight:800;color:#8a8177;letter-spacing:.06em;">SATIŞ FİYATI (₺)</span><input value="{{ msFiyat.val }}" onChange="{{ msFiyat.on }}" placeholder="950.000" style="width:100%;margin-top:5px;border:1px solid #3a3430;border-radius:12px;padding:12px;font-size:13px;background:#131110;color:#f5f2ee;font-weight:800;" style-focus="border-color:#B91C1C;outline:none;"></label>
+                  <label style="display:block;"><span style="font-size:9.5px;font-weight:800;color:#8a8177;letter-spacing:.06em;">NOTER (₺)</span><input value="{{ msNoter.val }}" onChange="{{ msNoter.on }}" style="width:100%;margin-top:5px;border:1px solid #3a3430;border-radius:12px;padding:12px;font-size:13px;background:#131110;color:#f5f2ee;" style-focus="border-color:#B91C1C;outline:none;"></label>
+                </div>
+              </div>
+              <div style="background:linear-gradient(140deg,#B91C1C,#5a0f0f);border-radius:22px;padding:20px;margin-top:12px;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.07);"></div>
+                <div style="font-size:11px;font-weight:800;color:#ffd0d0;">{{ msAd }}</div>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px;font-size:12.5px;font-weight:600;">
+                  <div style="display:flex;justify-content:space-between;"><span style="color:#ffd0d0;">Alış + masraf + noter</span><span>{{ msMaliyet }}</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="color:#ffd0d0;">Satış fiyatı</span><strong>{{ msSatisTxt }}</strong></div>
+                </div>
+                <div style="margin-top:14px;border-top:1px solid rgba(255,255,255,.2);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;">
+                  <span style="font-size:10px;font-weight:900;color:#ffd0d0;letter-spacing:.08em;">NET KÂR</span>
+                  <span style="font-size:30px;font-weight:900;letter-spacing:-0.02em;font-style:italic;color:{{ msKarColor }};">{{ msKar }}</span>
+                </div>
+              </div>
+              <button onClick="{{ msKaydet }}" style="width:100%;margin-top:12px;border:none;cursor:pointer;background:#f5f2ee;color:#131110;font-weight:900;font-size:14px;padding:16px;border-radius:16px;">Satışı Tamamla</button>
+            </sc-if>
+
+            <!-- DİĞER -->
+            <sc-if value="{{ mDiger }}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <sc-for list="{{ mMenu }}" as="mn" hint-placeholder-count="8">
+                  <button style="border:1px solid #2b2724;background:#1d1a18;cursor:pointer;border-radius:18px;padding:16px 14px;text-align:left;color:#f5f2ee;min-height:44px;" style-hover="border-color:#B91C1C;">
+                    <span style="width:34px;height:34px;border-radius:12px;background:{{ mn.ibg }};color:{{ mn.ic }};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;font-style:italic;">{{ mn.ikon }}</span>
+                    <div style="font-size:13px;font-weight:800;margin-top:10px;">{{ mn.ad }}</div>
+                    <div style="font-size:10px;color:#8a8177;margin-top:2px;font-weight:700;">{{ mn.alt }}</div>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="text-align:center;font-size:10px;color:#57504a;margin-top:16px;font-weight:700;">Galerim v2.0 · BulutGrup Yazılım</div>
+            </sc-if>
+          </div>
+
+          <!-- Tab bar -->
+          <div style="flex:none;padding:8px 14px 6px;">
+            <div style="background:rgba(29,26,24,.92);backdrop-filter:blur(14px);border:1px solid #2b2724;border-radius:999px;display:flex;padding:6px;gap:2px;">
+              <sc-for list="{{ mTabs }}" as="tb" hint-placeholder-count="5">
+                <button onClick="{{ tb.go }}" style="flex:{{ tb.flex }};border:none;cursor:pointer;border-radius:999px;padding:10px 0;min-height:44px;display:flex;align-items:center;justify-content:center;gap:6px;background:{{ tb.bg }};color:{{ tb.c }};">
+                  <span style="font-size:13px;font-weight:900;font-style:italic;">{{ tb.ikon }}</span>
+                  <sc-if value="{{ tb.aktif }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:800;white-space:nowrap;">{{ tb.ad }}</span></sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+      </x-import>
+    </div>
+
+    <!-- ================= ANDROID: GENEL ================= -->
+    <div style="display:flex;flex-direction:column;gap:10px;" data-screen-label="Android genel v2">
+      <div style="font-size:12px;font-weight:800;color:#8a8177;text-transform:uppercase;letter-spacing:.06em;">Android · Genel Bakış</div>
+      <x-import component-from-global-scope="AndroidDevice" from="./android-frame.jsx" dark="{{ true }}" hint-size="400px,860px">
+        <div style="padding:16px;background:#131110;min-height:100%;color:#f5f2ee;font-family:'Archivo',sans-serif;">
+          <div style="display:flex;align-items:center;gap:12px;padding:6px 4px 16px;">
+            <div style="flex:1;">
+              <div style="font-size:11px;font-weight:700;color:#8a8177;letter-spacing:.04em;">DEMO GALERİ</div>
+              <div style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:-0.02em;">Genel Bakış</div>
+            </div>
+            <div style="width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,#2a1414,#B91C1C);border:1px solid #B91C1C55;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;">DG</div>
+          </div>
+          <div style="background:linear-gradient(140deg,#B91C1C 0%,#7a1010 55%,#3a0a0a 100%);border-radius:24px;padding:22px 20px;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.07);"></div>
+            <div style="font-size:11px;font-weight:800;color:#ffd0d0;letter-spacing:.08em;">BU DÖNEM NET KÂR</div>
+            <div style="font-size:36px;font-weight:900;letter-spacing:-0.03em;margin-top:6px;font-style:italic;">{{ hKar }}</div>
+            <div style="display:flex;gap:8px;margin-top:14px;">
+              <span style="white-space:nowrap;font-size:11px;font-weight:800;background:rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;">{{ hSatisSayi }} satış</span>
+              <span style="white-space:nowrap;font-size:11px;font-weight:800;background:rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;">{{ hCiro }} ciro</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
+            <sc-for list="{{ mStat }}" as="st" hint-placeholder-count="4">
+              <div style="background:#1d1a18;border:1px solid #2b2724;border-radius:18px;padding:15px;">
+                <div style="font-size:10px;color:#8a8177;font-weight:800;letter-spacing:.05em;">{{ st.label }}</div>
+                <div style="font-size:20px;font-weight:900;margin-top:5px;letter-spacing:-0.02em;">{{ st.value }}</div>
+                <div style="font-size:10.5px;margin-top:3px;color:{{ st.subColor }};font-weight:700;">{{ st.sub }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <div style="flex:1;background:#f5f2ee;color:#131110;border-radius:16px;padding:15px;text-align:center;font-weight:900;font-size:13px;">+ Araç Alış</div>
+            <div style="flex:1;background:#1d1a18;border:1px solid #3a3430;border-radius:16px;padding:15px;text-align:center;font-weight:800;font-size:13px;">+ Masraf</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ================= ANDROID: ARAÇLAR ================= -->
+    <div style="display:flex;flex-direction:column;gap:10px;" data-screen-label="Android araçlar v2">
+      <div style="font-size:12px;font-weight:800;color:#8a8177;text-transform:uppercase;letter-spacing:.06em;">Android · Araçlarım</div>
+      <x-import component-from-global-scope="AndroidDevice" from="./android-frame.jsx" dark="{{ true }}" hint-size="400px,860px">
+        <div style="padding:16px;background:#131110;min-height:100%;color:#f5f2ee;font-family:'Archivo',sans-serif;">
+          <div style="padding:6px 4px 16px;">
+            <div style="font-size:11px;font-weight:700;color:#8a8177;letter-spacing:.04em;">DEMO GALERİ</div>
+            <div style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:-0.02em;">Araçlarım</div>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:14px;">
+            <span style="border-radius:999px;padding:9px 18px;font-size:12px;font-weight:800;background:#f5f2ee;color:#131110;">Stokta 5</span>
+            <span style="border:1px solid #3a3430;border-radius:999px;padding:9px 18px;font-size:12px;font-weight:800;color:#8a8177;">Satılan 3</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ aStokKart }}" as="v" hint-placeholder-count="5">
+              <div style="background:#1d1a18;border:1px solid #2b2724;border-radius:20px;padding:14px;display:flex;gap:13px;align-items:center;">
+                <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#2b2724,#3a3430);display:flex;align-items:center;justify-content:center;flex:none;position:relative;overflow:hidden;">
+                  <span style="font-size:17px;font-weight:900;font-style:italic;color:#6b6259;">{{ v.harf }}</span>
+                  <span style="position:absolute;bottom:0;left:0;right:0;height:3px;background:#B91C1C;"></span>
+                </div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:13.5px;font-weight:800;">{{ v.ad }}</div>
+                  <div style="font-size:10.5px;color:#8a8177;margin-top:3px;font-weight:600;">{{ v.alt }}</div>
+                </div>
+                <div style="text-align:right;flex:none;">
+                  <div style="font-size:14px;font-weight:900;letter-spacing:-0.02em;">{{ v.fiyat }}</div>
+                  <div style="font-size:9.5px;color:#8a8177;margin-top:2px;font-weight:700;">hedef satış</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+  </div>
+</div>
+
+<sc-if value="{{ mToastGoster }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#f5f2ee;color:#131110;font-size:13px;font-weight:800;padding:12px 22px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.5);z-index:99;">{{ mToastMesaj }}</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    tab: 'genel',
+    aracTab: 'stok',
+    detay: null,
+    toast: '',
+    vehicles: [
+      { id: 1, ad: 'Renault Clio 1.0 TCe Joy', plaka: '34 KLM 728', km: 48500, yil: 2022, yakit: 'Benzin', vites: 'Manuel', alis: 815000, hedef: 915000, masraf: 6800, durum: 'stok' },
+      { id: 2, ad: 'Fiat Egea 1.4 Fire Urban', plaka: '06 DFR 341', km: 92300, yil: 2020, yakit: 'Benzin', vites: 'Manuel', alis: 690000, hedef: 775000, masraf: 14500, durum: 'stok' },
+      { id: 3, ad: 'VW Passat 1.5 TSI Business', plaka: '35 VPB 902', km: 61000, yil: 2021, yakit: 'Benzin', vites: 'Otomatik', alis: 1490000, hedef: 1655000, masraf: 21400, durum: 'stok' },
+      { id: 4, ad: 'Toyota Corolla 1.8 Hybrid', plaka: '16 TYT 655', km: 33800, yil: 2023, yakit: 'Hibrit', vites: 'Otomatik', alis: 1280000, hedef: 1420000, masraf: 950, durum: 'stok' },
+      { id: 5, ad: 'Hyundai i20 1.4 MPI Style', plaka: '41 HND 118', km: 77450, yil: 2019, yakit: 'Benzin', vites: 'Otomatik', alis: 605000, hedef: 685000, masraf: 2350, durum: 'stok' },
+      { id: 6, ad: 'Ford Focus 1.5 EcoBlue', plaka: '34 FCS 207', km: 88100, yil: 2020, yakit: 'Dizel', vites: 'Otomatik', alis: 890000, hedef: 0, masraf: 9200, durum: 'satildi', satis: 985000, noter: 7800, tarih: '22.05.2026' },
+      { id: 7, ad: 'Opel Corsa 1.2 Edition', plaka: '06 OPC 483', km: 54200, yil: 2021, yakit: 'Benzin', vites: 'Manuel', alis: 640000, hedef: 0, masraf: 3600, durum: 'satildi', satis: 712000, noter: 7200, tarih: '18.06.2026' },
+      { id: 8, ad: 'Honda Civic 1.5 VTEC', plaka: '35 HCV 916', km: 41700, yil: 2022, yakit: 'Benzin', vites: 'Otomatik', alis: 1310000, hedef: 0, masraf: 12800, durum: 'satildi', satis: 1466000, noter: 8400, tarih: '30.06.2026' }
+    ],
+    af: { ad: '', plaka: '', km: '', alis: '', hedef: '' },
+    eks: {},
+    sf: { id: 1, fiyat: '', noter: '8000' }
+  };
+
+  tl(n) { return '₺' + Math.round(n).toLocaleString('tr-TR'); }
+  num(s) { const n = parseFloat(String(s).replace(/\./g, '').replace(',', '.')); return isNaN(n) ? 0 : n; }
+  kar(v) { return (v.satis || 0) - v.alis - v.masraf - (v.noter || 0); }
+  toast(msg) { this.setState({ toast: msg }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), 2400); }
+  field(group, key) {
+    return { val: this.state[group][key], on: (e) => this.setState(s => ({ [group]: Object.assign({}, s[group], { [key]: e.target.value }) })) };
+  }
+
+  renderVals() {
+    const S = this.state;
+    const stok = S.vehicles.filter(v => v.durum === 'stok');
+    const satilan = S.vehicles.filter(v => v.durum === 'satildi');
+    const toplamKar = satilan.reduce((a, v) => a + this.kar(v), 0);
+
+    const basliklar = { genel: 'Genel Bakış', araclar: 'Araçlarım', alis: 'Araç Alış', satis: 'Araç Satış', diger: 'Diğer' };
+    const ikonlar = { genel: 'G', araclar: 'A', alis: '+', satis: '₺', diger: '⋯' };
+    const mTabs = Object.keys(basliklar).map(id => {
+      const act = S.tab === id;
+      return {
+        ad: basliklar[id], ikon: ikonlar[id], aktif: act, flex: act ? 2.2 : 1,
+        go: () => this.setState({ tab: id, detay: null }),
+        bg: act ? 'linear-gradient(120deg,#B91C1C,#7a1010)' : 'transparent',
+        c: act ? '#fff' : '#8a8177'
+      };
+    });
+
+    const mStat = [
+      { label: 'STOKTAKİ ARAÇ', value: stok.length, sub: this.tl(stok.reduce((a, v) => a + v.alis, 0)) + ' değer', subColor: '#8a8177' },
+      { label: 'ORT. STOK SÜRESİ', value: '24 gün', sub: 'alıştan satışa', subColor: '#8a8177' },
+      { label: 'BEKLEYEN VADE', value: '₺736K', sub: '3 çek/senet', subColor: '#eab308' },
+      { label: 'KASA + BANKA', value: '₺3,2M', sub: '3 hesap', subColor: '#4ade80' }
+    ];
+    const karlar = [48, 62, 0, 78, 157, Math.round(toplamKar / 1000)];
+    const maxK = Math.max(...karlar, 1);
+    const aylar = ['Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem'];
+    const mBars = aylar.map((ay, i) => ({
+      ay, h: Math.max(5, Math.round(karlar[i] / maxK * 100)) + '%',
+      bg: i === 5 ? 'linear-gradient(180deg,#f87171,#B91C1C)' : '#3a3430',
+      tc: i === 5 ? '#f87171' : '#57504a'
+    }));
+    const mHareket = [
+      { text: 'Honda Civic satıldı — ₺1.466.000', when: '30 Haziran', ikon: '₺', ibg: 'rgba(74,222,128,.15)', ic: '#4ade80' },
+      { text: 'i20 muayene masrafı — ₺2.350', when: '7 Temmuz', ikon: '−', ibg: 'rgba(234,179,8,.15)', ic: '#eab308' },
+      { text: 'Hyundai i20 stoğa alındı', when: '5 Temmuz', ikon: '+', ibg: 'rgba(248,113,113,.15)', ic: '#f87171' }
+    ];
+
+    const stokTab = S.aracTab === 'stok';
+    const liste = stokTab ? stok : satilan;
+    const mAracRows = liste.map(v => ({
+      ad: v.ad, harf: v.ad[0],
+      alt: v.plaka + ' · ' + v.km.toLocaleString('tr-TR') + ' km · ' + v.yil,
+      fiyat: stokTab ? this.tl(v.hedef) : (this.kar(v) >= 0 ? '+' : '') + this.tl(this.kar(v)),
+      fiyatAlt: stokTab ? 'hedef satış' : 'net kâr',
+      fiyatColor: stokTab ? '#f5f2ee' : (this.kar(v) >= 0 ? '#4ade80' : '#f87171'),
+      serit: stokTab ? '#B91C1C' : '#4ade80',
+      ac: () => { if (stokTab) this.setState({ detay: v.id }); }
+    }));
+    const dv = S.vehicles.find(v => v.id === S.detay);
+
+    const eksDurumlar = ['Orijinal', 'Lokal', 'Boyalı', 'Değişen'];
+    const eksRenk = {
+      'Orijinal': ['rgba(34,197,94,.12)', '#4ade80', 'rgba(34,197,94,.4)'],
+      'Lokal': ['rgba(234,179,8,.12)', '#facc15', 'rgba(234,179,8,.4)'],
+      'Boyalı': ['rgba(249,115,22,.12)', '#fb923c', 'rgba(249,115,22,.4)'],
+      'Değişen': ['rgba(239,68,68,.14)', '#f87171', 'rgba(239,68,68,.45)']
+    };
+    const parcalar = [
+      { ad: 'Motor Kaputu', area: '1 / 2' }, { ad: 'Sol Ön Çamurluk', area: '2 / 1' }, { ad: 'Sağ Ön Çamurluk', area: '2 / 3' },
+      { ad: 'Sol Ön Kapı', area: '3 / 1' }, { ad: 'Tavan', area: '3 / 2 / 5 / 3' }, { ad: 'Sağ Ön Kapı', area: '3 / 3' },
+      { ad: 'Sol Arka Kapı', area: '4 / 1' }, { ad: 'Sağ Arka Kapı', area: '4 / 3' },
+      { ad: 'Sol Arka Çamurluk', area: '5 / 1' }, { ad: 'Bagaj Kapağı', area: '5 / 2' }, { ad: 'Sağ Arka Çamurluk', area: '5 / 3' }
+    ];
+    const mEks = parcalar.map(p => {
+      const d = S.eks[p.ad] || 'Orijinal';
+      const [bg, color, bc] = eksRenk[d];
+      return {
+        ad: p.ad, durum: d, area: p.area, bg, color, bc,
+        tik: () => this.setState(s => ({ eks: Object.assign({}, s.eks, { [p.ad]: eksDurumlar[(eksDurumlar.indexOf(d) + 1) % 4] }) }))
+      };
+    });
+
+    const sv = stok.find(v => v.id === Number(S.sf.id)) || stok[0];
+    const msSatis = this.num(S.sf.fiyat) || (sv ? sv.hedef : 0);
+    const msMaliyetN = sv ? sv.alis + sv.masraf + this.num(S.sf.noter) : 0;
+    const msKarN = msSatis - msMaliyetN;
+
+    return {
+      mBaslik: basliklar[S.tab], mTabs,
+      mGenel: S.tab === 'genel', mAraclar: S.tab === 'araclar', mAlis: S.tab === 'alis',
+      mSatis: S.tab === 'satis', mDiger: S.tab === 'diger',
+      hKar: '+' + this.tl(toplamKar), hSatisSayi: satilan.length,
+      hCiro: '₺' + (satilan.reduce((a, v) => a + (v.satis || 0), 0) / 1000000).toFixed(1).replace('.', ',') + 'M',
+      mStat, mBars, mHareket,
+      mStokSayi: stok.length, mSatilanSayi: satilan.length,
+      mTabStok: () => this.setState({ aracTab: 'stok' }), mTabSatilan: () => this.setState({ aracTab: 'satilan' }),
+      mtStokBg: stokTab ? '#f5f2ee' : 'transparent', mtStokC: stokTab ? '#131110' : '#8a8177', mtStokBc: stokTab ? '#f5f2ee' : '#3a3430',
+      mtSatBg: !stokTab ? '#f5f2ee' : 'transparent', mtSatC: !stokTab ? '#131110' : '#8a8177', mtSatBc: !stokTab ? '#f5f2ee' : '#3a3430',
+      mAracRows,
+      mDetayYok: !dv, mDetayVar: !!dv,
+      mDetayKapat: () => this.setState({ detay: null }),
+      mdAd: dv ? dv.ad : '', mdHarf: dv ? dv.ad[0] : '',
+      mdAlt: dv ? dv.plaka + ' · ' + dv.km.toLocaleString('tr-TR') + ' km · ' + dv.yil : '',
+      mdDetay: dv ? [
+        { k: 'YAKIT', v: dv.yakit }, { k: 'VİTES', v: dv.vites },
+        { k: 'ALIŞ FİYATI', v: this.tl(dv.alis) }, { k: 'TOPLAM MASRAF', v: this.tl(dv.masraf) },
+        { k: 'HEDEF SATIŞ', v: this.tl(dv.hedef) }, { k: 'MODEL YILI', v: dv.yil }
+      ] : [],
+      mdKar: dv ? '+' + this.tl(dv.hedef - dv.alis - dv.masraf) : '',
+      mdAlis: dv ? this.tl(dv.alis) : '', mdMasraf: dv ? this.tl(dv.masraf) : '',
+      mdSat: () => { if (dv) this.setState(s => ({ tab: 'satis', detay: null, sf: Object.assign({}, s.sf, { id: dv.id }) })); },
+      maAd: this.field('af', 'ad'), maPlaka: this.field('af', 'plaka'), maKm: this.field('af', 'km'),
+      maAlisF: this.field('af', 'alis'), maHedef: this.field('af', 'hedef'),
+      mEks,
+      maKaydet: () => {
+        const f = S.af;
+        if (!f.ad || !this.num(f.alis)) { this.toast('Marka/model ve alış fiyatı zorunlu'); return; }
+        const id = Math.max(...S.vehicles.map(v => v.id)) + 1;
+        this.setState(s => ({
+          vehicles: s.vehicles.concat([{ id, ad: f.ad, plaka: f.plaka || '—', km: this.num(f.km), yil: 2026, yakit: 'Benzin', vites: 'Manuel', alis: this.num(f.alis), hedef: this.num(f.hedef), masraf: 0, durum: 'stok' }]),
+          af: { ad: '', plaka: '', km: '', alis: '', hedef: '' }, eks: {}, tab: 'araclar', aracTab: 'stok'
+        }));
+        this.toast(f.ad + ' stoğa eklendi');
+      },
+      msSel: sv ? sv.id : 0, msSelOn: (e) => this.setState(s => ({ sf: Object.assign({}, s.sf, { id: e.target.value }) })),
+      msOpts: stok.map(v => ({ id: v.id, ad: v.ad + ' — ' + v.plaka })),
+      msFiyat: this.field('sf', 'fiyat'), msNoter: this.field('sf', 'noter'),
+      msAd: sv ? sv.ad + ' · ' + sv.plaka : 'Araç seçin',
+      msMaliyet: this.tl(msMaliyetN), msSatisTxt: this.tl(msSatis),
+      msKar: (msKarN >= 0 ? '+' : '') + this.tl(msKarN), msKarColor: msKarN >= 0 ? '#bbf7d0' : '#fecaca',
+      msKaydet: () => {
+        if (!sv) return;
+        if (!this.num(S.sf.fiyat)) { this.toast('Satış fiyatı girin'); return; }
+        this.setState(s => ({
+          vehicles: s.vehicles.map(v => v.id === sv.id ? Object.assign({}, v, { durum: 'satildi', satis: this.num(s.sf.fiyat), noter: this.num(s.sf.noter), tarih: '15.07.2026' }) : v),
+          tab: 'araclar', aracTab: 'satilan', sf: { id: 0, fiyat: '', noter: '8000' }
+        }));
+        this.toast(sv.ad + ' satıldı');
+      },
+      mMenu: [
+        { ad: 'Müşteriler', alt: '11 kayıt', ikon: 'M', ibg: 'rgba(248,113,113,.14)', ic: '#f87171' },
+        { ad: 'Bankalar', alt: '3 hesap', ikon: 'B', ibg: 'rgba(96,165,250,.14)', ic: '#60a5fa' },
+        { ad: 'Çek / Senet', alt: '3 bekleyen', ikon: 'Ç', ibg: 'rgba(234,179,8,.14)', ic: '#facc15' },
+        { ad: 'Personel', alt: '3 kişi', ikon: 'P', ibg: 'rgba(74,222,128,.14)', ic: '#4ade80' },
+        { ad: 'Raporlar', alt: 'kâr & masraf', ikon: 'R', ibg: 'rgba(192,132,252,.14)', ic: '#c084fc' },
+        { ad: 'Hesaplayıcı', alt: 'kredi & taksit', ikon: '%', ibg: 'rgba(45,212,191,.14)', ic: '#2dd4bf' },
+        { ad: 'Abonelik', alt: 'Yıllık · 214 gün', ikon: '★', ibg: 'rgba(251,146,60,.14)', ic: '#fb923c' },
+        { ad: 'Ayarlar', alt: '', ikon: '⚙', ibg: 'rgba(148,163,184,.14)', ic: '#94a3b8' }
+      ],
+      aStokKart: stok.slice(0, 5).map(v => ({
+        ad: v.ad, harf: v.ad[0], alt: v.plaka + ' · ' + v.km.toLocaleString('tr-TR') + ' km · ' + v.yil, fiyat: this.tl(v.hedef)
+      })),
+      mToastGoster: !!S.toast, mToastMesaj: S.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

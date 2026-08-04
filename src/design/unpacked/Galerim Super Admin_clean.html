@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./Galerim Super Admin_assets/2ea0bb41-02c4-4df1-b528-9bc80584012e.js"></script>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: italic;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/72e5845b-e55c-443d-ac1c-1f771d831a0f.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: italic;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/8456f0fd-8e21-42a1-a401-ba767b3233e3.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: italic;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/2770b146-16cf-4091-94da-24a7dc8d83dc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: italic;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/72e5845b-e55c-443d-ac1c-1f771d831a0f.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: italic;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/8456f0fd-8e21-42a1-a401-ba767b3233e3.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: italic;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/2770b146-16cf-4091-94da-24a7dc8d83dc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/9e0fe62b-d5c4-4cb4-9788-2226f74efa40.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/141e5d36-cd39-4cd7-b110-2e728a3ef70f.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/d8843615-dbcd-4c24-a9a5-aaa09ace8d83.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/9e0fe62b-d5c4-4cb4-9788-2226f74efa40.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/141e5d36-cd39-4cd7-b110-2e728a3ef70f.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/d8843615-dbcd-4c24-a9a5-aaa09ace8d83.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/9e0fe62b-d5c4-4cb4-9788-2226f74efa40.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/141e5d36-cd39-4cd7-b110-2e728a3ef70f.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/d8843615-dbcd-4c24-a9a5-aaa09ace8d83.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/9e0fe62b-d5c4-4cb4-9788-2226f74efa40.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/141e5d36-cd39-4cd7-b110-2e728a3ef70f.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/d8843615-dbcd-4c24-a9a5-aaa09ace8d83.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/9e0fe62b-d5c4-4cb4-9788-2226f74efa40.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/141e5d36-cd39-4cd7-b110-2e728a3ef70f.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("./Galerim Super Admin_assets/d8843615-dbcd-4c24-a9a5-aaa09ace8d83.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0;background:#141210;font-family:'Archivo',system-ui,sans-serif;color:#191512;}
+a{color:#B91C1C;text-decoration:none} a:hover{color:#7f1d1d}
+input,select,button{font-family:'Archivo',system-ui,sans-serif;}
+*{box-sizing:border-box}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:#3a3632;border-radius:6px}
+@keyframes toastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+
+<div style="display:flex;min-height:100vh;background:#f4f2ef;">
+
+  <!-- ======================= SIDEBAR (koyu — süper admin ayrımı) ======================= -->
+  <aside style="width:232px;flex:none;background:#141210;color:#c9c2b8;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;">
+    <div style="padding:22px 20px 16px;border-bottom:1px solid #2a2725;">
+      <div style="background:#faf8f5;border-radius:10px;padding:10px 12px;display:inline-block;"><img src="./Galerim Super Admin_assets/b92f7772-47d0-46f9-943a-9ee547107215.png" alt="Galerim" style="width:118px;display:block;"></div>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:7px;font-size:11px;color:#8a8177;">
+        <span style="font-size:10px;font-weight:800;background:#B91C1C;color:#fff;padding:3px 8px;border-radius:5px;letter-spacing:.05em;">SÜPER ADMIN</span>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:#7a6f61;">cpgm.galerim.app</div>
+    </div>
+    <nav style="flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:2px;">
+      <sc-for list="{{ navItems }}" as="nv" hint-placeholder-count="5">
+        <button sc-camel-on-click="{{ nv.go }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:none;cursor:pointer;padding:10px 12px;border-radius:8px;font-size:13.5px;font-weight:{{ nv.fw }};background:{{ nv.bg }};color:{{ nv.color }};" style-hover="background:#242120;">
+          <span style="width:8px;height:8px;border-radius:2px;flex:none;background:{{ nv.dot }};"></span>
+          {{ nv.label }}
+        </button>
+      </sc-for>
+    </nav>
+    <div style="padding:14px 16px;border-top:1px solid #2a2725;display:flex;align-items:center;gap:10px;">
+      <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#B91C1C,#5a0f0f);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none;">BG</div>
+      <div><div style="font-size:13px;font-weight:600;color:#fff;">BulutGrup</div><div style="font-size:11px;color:#7a6f61;">Platform sahibi</div></div>
+    </div>
+  </aside>
+
+  <!-- ======================= MAIN ======================= -->
+  <main style="flex:1;min-width:0;display:flex;flex-direction:column;">
+    <header style="height:62px;flex:none;background:#ffffff;border-bottom:1px solid #e7e2da;display:flex;align-items:center;gap:16px;padding:0 28px;position:sticky;top:0;z-index:20;">
+      <h1 style="margin:0;font-size:17px;font-weight:800;font-style:italic;">{{ pageTitle }}</h1>
+      <div style="flex:1;"></div>
+      <span style="font-size:12px;color:#8a8177;">Son senkron: bugün 14:32</span>
+    </header>
+
+    <div style="padding:26px 28px 60px;max-width:1240px;width:100%;" data-screen-label="{{ pageTitle }}">
+
+    <!-- ======================= GENEL BAKIŞ ======================= -->
+    <sc-if value="{{ pageGenel }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+        <sc-for list="{{ statCards }}" as="st" hint-placeholder-count="4">
+          <div style="background:#fff;border:1px solid #e7e2da;border-radius:12px;padding:18px;">
+            <div style="font-size:12px;color:#8a8177;font-weight:600;">{{ st.label }}</div>
+            <div style="font-size:26px;font-weight:800;margin-top:6px;letter-spacing:-0.02em;">{{ st.value }}</div>
+            <div style="font-size:12px;margin-top:6px;color:{{ st.subColor }};font-weight:600;">{{ st.sub }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-top:14px;align-items:start;">
+        <div style="background:#fff;border:1px solid #e7e2da;border-radius:12px;padding:20px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;">
+            <h2 style="margin:0;font-size:14px;font-weight:700;">Aylık Yinelenen Gelir (MRR)</h2>
+            <span style="font-size:12px;color:#8a8177;">Son 6 ay</span>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:14px;height:150px;margin-top:18px;">
+            <sc-for list="{{ mrrBars }}" as="cb" hint-placeholder-count="6">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end;">
+                <div style="font-size:10.5px;color:#8a8177;font-weight:600;">{{ cb.amount }}</div>
+                <div style="width:100%;max-width:44px;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#B91C1C,#5a0f0f);height:{{ cb.h }};"></div>
+                <div style="font-size:11px;color:#8a8177;">{{ cb.ay }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #e7e2da;border-radius:12px;padding:20px;">
+          <h2 style="margin:0;font-size:14px;font-weight:700;">Dikkat Gerektiren</h2>
+          <div style="display:flex;flex-direction:column;margin-top:10px;">
+            <sc-for list="{{ uyarilar }}" as="u" hint-placeholder-count="4">
+              <div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #f3efe9;align-items:flex-start;">
+                <span style="width:8px;height:8px;border-radius:50%;margin-top:5px;flex:none;background:{{ u.dot }};"></span>
+                <div><div style="font-size:12.5px;font-weight:600;">{{ u.text }}</div><div style="font-size:11px;color:#8a8177;margin-top:2px;">{{ u.alt }}</div></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ======================= İŞLETMELER ======================= -->
+    <sc-if value="{{ pageIsletme }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;gap:10px;margin-bottom:16px;align-items:center;">
+        <input value="{{ arama }}" sc-camel-on-change="{{ aramaOn }}" placeholder="Galeri adı veya subdomain ara…" style="width:320px;border:1px solid #ddd6cc;border-radius:8px;padding:10px 14px;font-size:13px;background:#fff;" style-focus="border-color:#B91C1C;outline:none;">
+        <div style="flex:1;"></div>
+        <span style="font-size:12.5px;color:#8a8177;">{{ filtreSayi }} işletme</span>
+      </div>
+      <div style="background:#fff;border:1px solid #e7e2da;border-radius:12px;overflow:hidden;">
+        <div style="display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 0.9fr 90px;gap:10px;padding:12px 18px;background:#faf8f5;border-bottom:1px solid #eee9e1;font-size:11px;font-weight:700;color:#8a8177;text-transform:uppercase;letter-spacing:.04em;">
+          <span>İşletme</span><span>Paket</span><span>Başlangıç</span><span>Bitiş</span><span>Kalan Gün</span><span></span>
+        </div>
+        <sc-for list="{{ isletmeRows }}" as="r" hint-placeholder-count="6">
+          <div style="border-bottom:1px solid #f3efe9;">
+            <div style="display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 0.9fr 90px;gap:10px;padding:13px 18px;align-items:center;font-size:13px;">
+              <div>
+                <div style="font-weight:700;">{{ r.ad }}</div>
+                <div style="font-size:11.5px;color:#B91C1C;">{{ r.subdomain }}</div>
+              </div>
+              <span style="font-size:11px;font-weight:800;color:{{ r.paketColor }};">{{ r.paket }}</span>
+              <span>{{ r.baslangic }}</span>
+              <span>{{ r.bitis }}</span>
+              <span style="font-weight:800;color:{{ r.kalanColor }};">{{ r.kalan }} gün</span>
+              <button sc-camel-on-click="{{ r.detay }}" style="border:1px solid #ddd6cc;background:#fff;cursor:pointer;border-radius:7px;padding:6px 0;font-size:12px;font-weight:600;" style-hover="background:#f6f1ea;">{{ r.detayLabel }}</button>
+            </div>
+            <sc-if value="{{ r.acik }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:4px 18px 18px;background:#faf8f5;">
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px 24px;padding:14px 16px;background:#fff;border:1px solid #eee9e1;border-radius:10px;">
+                  <sc-for list="{{ r.detaylar }}" as="d" hint-placeholder-count="8">
+                    <div>
+                      <div style="font-size:10.5px;color:#8a8177;font-weight:700;text-transform:uppercase;letter-spacing:.04em;">{{ d.k }}</div>
+                      <div style="font-size:13px;font-weight:600;margin-top:2px;">{{ d.v }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:10px;align-items:center;">
+                  <button sc-camel-on-click="{{ r.hediye7 }}" style="border:none;cursor:pointer;background:#1a1a1a;color:#fff;font-weight:700;font-size:12.5px;padding:9px 16px;border-radius:8px;" style-hover="background:#B91C1C;">🎁 +7 gün hediye</button>
+                  <button sc-camel-on-click="{{ r.hediye30 }}" style="border:1px solid #ddd6cc;cursor:pointer;background:#fff;font-weight:600;font-size:12.5px;padding:9px 16px;border-radius:8px;" style-hover="background:#f6f1ea;">+30 gün hediye</button>
+                  <button style="border:1px solid #ddd6cc;cursor:pointer;background:#fff;font-weight:600;font-size:12.5px;padding:9px 16px;border-radius:8px;" style-hover="background:#f6f1ea;">Panele git ↗</button>
+                  <div style="flex:1;"></div>
+                  <button style="border:1px solid #f3d0d0;cursor:pointer;background:#fff;color:#B91C1C;font-weight:600;font-size:12.5px;padding:9px 16px;border-radius:8px;" style-hover="background:#faf3ee;">Askıya al</button>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <!-- ======================= İŞLEM KAYDI ======================= -->
+    <sc-if value="{{ pageIslem }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;">
+        <sc-for list="{{ islemOzet }}" as="io" hint-placeholder-count="3">
+          <div style="background:#fff;border:1px solid #e7e2da;border-radius:12px;padding:18px;">
+            <div style="font-size:12px;color:#8a8177;font-weight:600;">{{ io.label }}</div>
+            <div style="font-size:24px;font-weight:800;margin-top:6px;letter-spacing:-0.02em;">{{ io.value }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="background:#fff;border:1px solid #e7e2da;border-radius:12px;overflow:hidden;">
+        <div style="display:grid;grid-template-columns:1fr 1.6fr 1fr 1fr 1fr 1fr;gap:10px;padding:12px 18px;background:#faf8f5;border-bottom:1px solid #eee9e1;font-size:11px;font-weight:700;color:#8a8177;text-transform:uppercase;letter-spacing:.04em;">
+          <span>İşlem No</span><span>İşletme</span><span>Paket</span><span>Tutar</span><span>Tarih</span><span>Durum</span>
+        </div>
+        <sc-for list="{{ islemRows }}" as="t" hint-placeholder-count="8">
+          <div style="display:grid;grid-template-columns:1fr 1.6fr 1fr 1fr 1fr 1fr;gap:10px;padding:13px 18px;align-items:center;font-size:13px;border-bottom:1px solid #f3efe9;">
+            <span style="font-size:12px;color:#8a8177;font-weight:600;">{{ t.no }}</span>
+            <span style="font-weight:700;">{{ t.isletme }}</span>
+            <span>{{ t.paket }}</span>
+            <strong>{{ t.tutar }}</strong>
+            <span style="color:#8a8177;">{{ t.tarih }}</span>
+            <span style="font-size:11px;font-weight:800;color:{{ t.durumColor }};">{{ t.durum }}</span>
+          </div>
+        </sc-for>
+        <div style="padding:12px 18px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#8a8177;">
+          <span>iyzico üzerinden otomatik senkronize edilir</span>
+          <span style="font-weight:800;color:#1e64d4;font-style:italic;">iyzico</span>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ======================= ANALİTİK ======================= -->
+    <sc-if value="{{ pageAnalitik }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+        <sc-for list="{{ analitikKart }}" as="ak" hint-placeholder-count="8">
+          <div style="background:#fff;border:1px solid #e7e2da;border-radius:12px;padding:18px;">
+            <div style="font-size:12px;color:#8a8177;font-weight:600;">{{ ak.label }}</div>
+            <div style="font-size:24px;font-weight:800;margin-top:6px;letter-spacing:-0.02em;">{{ ak.value }}</div>
+            <div style="font-size:11.5px;color:#8a8177;margin-top:4px;">{{ ak.sub }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="background:#fff;border:1px solid #e7e2da;border-radius:12px;padding:20px;margin-top:14px;">
+        <h2 style="margin:0 0 16px;font-size:14px;font-weight:700;">En Aktif İşletmeler (bu ay eklenen araç)</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <sc-for list="{{ aktifBar }}" as="ab" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:160px 1fr 60px;gap:12px;align-items:center;font-size:12.5px;">
+              <span style="font-weight:600;">{{ ab.ad }}</span>
+              <div style="height:10px;background:#f3efe9;border-radius:5px;overflow:hidden;"><div style="height:100%;border-radius:5px;background:linear-gradient(90deg,#1a1a1a,#B91C1C);width:{{ ab.w }};"></div></div>
+              <strong style="text-align:right;">{{ ab.n }} araç</strong>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ======================= AYARLAR ======================= -->
+    <sc-if value="{{ pageAyar }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;max-width:900px;">
+        <div style="background:#fff;border:1px solid #e7e2da;border-radius:12px;padding:22px;">
+          <h2 style="margin:0 0 6px;font-size:14px;font-weight:700;">Paket Fiyatları</h2>
+          <p style="margin:0 0 16px;font-size:12px;color:#8a8177;">Landing sayfasında ve iyzico'da anında güncellenir.</p>
+          <label style="display:block;"><span style="font-size:11.5px;font-weight:700;color:#8a8177;">Aylık Paket (₺)</span><input value="{{ ayarAylik.val }}" sc-camel-on-change="{{ ayarAylik.on }}" style="width:100%;margin-top:5px;border:1px solid #ddd6cc;border-radius:8px;padding:10px 12px;font-size:14px;background:#fff;font-weight:700;" style-focus="border-color:#B91C1C;outline:none;"></label>
+          <label style="display:block;margin-top:12px;"><span style="font-size:11.5px;font-weight:700;color:#8a8177;">Yıllık Paket (₺)</span><input value="{{ ayarYillik.val }}" sc-camel-on-change="{{ ayarYillik.on }}" style="width:100%;margin-top:5px;border:1px solid #ddd6cc;border-radius:8px;padding:10px 12px;font-size:14px;background:#fff;font-weight:700;" style-focus="border-color:#B91C1C;outline:none;"></label>
+          <label style="display:block;margin-top:12px;"><span style="font-size:11.5px;font-weight:700;color:#8a8177;">Deneme Süresi (gün)</span><input value="{{ ayarDeneme.val }}" sc-camel-on-change="{{ ayarDeneme.on }}" style="width:100%;margin-top:5px;border:1px solid #ddd6cc;border-radius:8px;padding:10px 12px;font-size:14px;background:#fff;font-weight:700;" style-focus="border-color:#B91C1C;outline:none;"></label>
+          <button sc-camel-on-click="{{ ayarKaydet }}" style="width:100%;margin-top:18px;border:none;cursor:pointer;background:#1a1a1a;color:#fff;font-weight:800;font-size:14px;padding:12px;border-radius:9px;" style-hover="background:#B91C1C;">Kaydet</button>
+        </div>
+        <div style="background:#fff;border:1px solid #e7e2da;border-radius:12px;padding:22px;">
+          <h2 style="margin:0 0 6px;font-size:14px;font-weight:700;">Platform Ayarları</h2>
+          <p style="margin:0 0 10px;font-size:12px;color:#8a8177;">Anahtarla açıp kapatın.</p>
+          <sc-for list="{{ togglelar }}" as="tg" hint-placeholder-count="4">
+            <button sc-camel-on-click="{{ tg.tik }}" style="display:flex;width:100%;justify-content:space-between;align-items:center;border:none;background:none;cursor:pointer;padding:12px 0;border-bottom:1px solid #f3efe9;text-align:left;">
+              <div><div style="font-size:13.5px;font-weight:700;color:#191512;">{{ tg.ad }}</div><div style="font-size:11.5px;color:#8a8177;margin-top:2px;">{{ tg.alt }}</div></div>
+              <span style="width:40px;height:22px;flex:none;border-radius:999px;background:{{ tg.bg }};position:relative;transition:background .15s;">
+                <span style="position:absolute;top:2px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);left:{{ tg.knobLeft }};transition:left .15s;"></span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    </div>
+  </main>
+</div>
+
+<sc-if value="{{ toastGoster }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;font-size:13px;font-weight:700;padding:12px 22px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:99;animation:toastIn .25s ease;">{{ toastMesaj }}</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script="">
+class Component extends DCLogic {
+  state = {
+    page: 'genel',
+    arama: '',
+    acik: null,
+    toast: '',
+    tenants: [
+      { id: 1, ad: 'Yıldız Otomotiv', sub: 'yildizoto', paket: 'Yıllık', baslangic: '15.01.2026', bitis: '15.01.2027', kalan: 187, yetkili: 'Hasan Yıldız', tel: '0532 411 22 33', eposta: 'info@yildizoto.com', arac: 34, kullanici: 4, sonGiris: 'Bugün 11:20' },
+      { id: 2, ad: 'Demo Galeri', sub: 'demogaleri', paket: 'Yıllık', baslangic: '10.12.2025', bitis: '10.12.2026', kalan: 151, yetkili: 'Ali Demir', tel: '0543 217 84 09', eposta: 'demo@galerim.app', arac: 12, kullanici: 3, sonGiris: 'Bugün 14:05' },
+      { id: 3, ad: 'Kaplan Motors', sub: 'kaplanmotors', paket: 'Aylık', baslangic: '01.07.2026', bitis: '01.08.2026', kalan: 20, yetkili: 'Ayşe Kaplan', tel: '0505 662 17 40', eposta: 'ayse@kaplanmotors.com', arac: 19, kullanici: 2, sonGiris: 'Dün 17:44' },
+      { id: 4, ad: 'Arslan Oto Galeri', sub: 'arslanoto', paket: 'Aylık', baslangic: '25.06.2026', bitis: '25.07.2026', kalan: 13, yetkili: 'Mehmet Arslan', tel: '0536 998 45 12', eposta: 'arslan@arslanoto.com', arac: 8, kullanici: 1, sonGiris: '3 gün önce' },
+      { id: 5, ad: 'Koç 2. El', sub: 'koc2el', paket: 'Deneme', baslangic: '08.07.2026', bitis: '15.07.2026', kalan: 3, yetkili: 'Ali Koç', tel: '0555 340 71 26', eposta: 'ali@koc2el.com', arac: 5, kullanici: 1, sonGiris: 'Bugün 09:12' },
+      { id: 6, ad: 'Şen Otomotiv', sub: 'senoto', paket: 'Yıllık', baslangic: '03.03.2026', bitis: '03.03.2027', kalan: 234, yetkili: 'Burak Şen', tel: '0542 118 90 34', eposta: 'burak@senoto.com', arac: 41, kullanici: 6, sonGiris: 'Bugün 13:50' },
+      { id: 7, ad: 'Aydın Auto', sub: 'aydinauto', paket: 'Aylık', baslangic: '18.06.2026', bitis: '18.07.2026', kalan: 6, yetkili: 'Elif Aydın', tel: '0533 774 20 18', eposta: 'elif@aydinauto.com', arac: 15, kullanici: 2, sonGiris: 'Dün 10:02' }
+    ],
+    islemler: [
+      { no: 'IYZ-88412', isletme: 'Şen Otomotiv', paket: 'Yıllık', tutar: 48000, tarih: '03.03.2026', durum: 'Başarılı' },
+      { no: 'IYZ-90233', isletme: 'Kaplan Motors', paket: 'Aylık', tutar: 6490, tarih: '01.07.2026', durum: 'Başarılı' },
+      { no: 'IYZ-90101', isletme: 'Arslan Oto Galeri', paket: 'Aylık', tutar: 6490, tarih: '25.06.2026', durum: 'Başarılı' },
+      { no: 'IYZ-89977', isletme: 'Aydın Auto', paket: 'Aylık', tutar: 6490, tarih: '18.06.2026', durum: 'Başarılı' },
+      { no: 'IYZ-89540', isletme: 'Yıldız Otomotiv', paket: 'Yıllık', tutar: 48000, tarih: '15.01.2026', durum: 'Başarılı' },
+      { no: 'IYZ-90310', isletme: 'Koç 2. El', paket: 'Aylık', tutar: 6490, tarih: '10.07.2026', durum: 'Başarısız' },
+      { no: 'IYZ-90295', isletme: 'Demo Galeri', paket: 'Yıllık', tutar: 48000, tarih: '10.12.2025', durum: 'Başarılı' },
+      { no: 'IYZ-90344', isletme: 'Kaplan Motors', paket: 'Aylık', tutar: 6490, tarih: '11.07.2026', durum: 'Beklemede' }
+    ],
+    ayar: { aylik: '6490', yillik: '48000', deneme: '7' },
+    toggles: { 'Yeni üyelik kabulü': true, 'Deneme süresi otomatik uzatma': false, 'Ödeme hatırlatma e-postaları': true, 'Bakım modu': false }
+  };
+
+  tl(n) { return '₺' + Math.round(n).toLocaleString('tr-TR'); }
+  toast(msg) { this.setState({ toast: msg }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), 2600); }
+  field(group, key) {
+    return { val: this.state[group][key], on: (e) => this.setState(s => ({ [group]: Object.assign({}, s[group], { [key]: e.target.value }) })) };
+  }
+
+  renderVals() {
+    const S = this.state;
+    const pages = { genel: 'Genel Bakış', isletme: 'İşletmeler', islem: 'İşlem Kaydı', analitik: 'Analitik', ayar: 'Ayarlar' };
+    const navItems = Object.keys(pages).map(id => {
+      const act = S.page === id;
+      return {
+        label: pages[id], go: () => this.setState({ page: id }),
+        bg: act ? '#2a1414' : 'transparent', color: act ? '#f87171' : '#c9c2b8',
+        fw: act ? 800 : 600, dot: act ? '#B91C1C' : '#3a3632'
+      };
+    });
+
+    const aktif = S.tenants.filter(t => t.paket !== 'Deneme');
+    const mrrNow = aktif.reduce((a, t) => a + (t.paket === 'Yıllık' ? 4000 : 6490), 0);
+    const statCards = [
+      { label: 'Toplam İşletme', value: S.tenants.length, sub: aktif.length + ' ödeyen · ' + (S.tenants.length - aktif.length) + ' deneme', subColor: '#8a8177' },
+      { label: 'Aylık Gelir (MRR)', value: this.tl(mrrNow), sub: '+%12 geçen aya göre', subColor: '#16a34a' },
+      { label: 'Platformdaki Araç', value: S.tenants.reduce((a, t) => a + t.arac, 0), sub: 'Tüm işletmeler toplamı', subColor: '#8a8177' },
+      { label: 'Yenileme Yaklaşan', value: S.tenants.filter(t => t.kalan <= 21).length, sub: '21 gün içinde bitiyor', subColor: '#b45309' }
+    ];
+    const mrrData = [18400, 21900, 27200, 31800, 35100, mrrNow];
+    const maxM = Math.max(...mrrData);
+    const aylar = ['Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem'];
+    const mrrBars = mrrData.map((k, i) => ({ ay: aylar[i], amount: Math.round(k / 1000) + 'K', h: Math.max(6, Math.round(k / maxM * 100)) + '%' }));
+    const uyarilar = [
+      { text: 'Koç 2. El — deneme 3 gün içinde bitiyor', alt: 'Dönüşüm için arama önerilir', dot: '#B91C1C' },
+      { text: 'Aydın Auto — abonelik 6 gün içinde bitiyor', alt: 'Yenileme hatırlatması gönderildi', dot: '#f59e0b' },
+      { text: 'Koç 2. El — başarısız ödeme (IYZ-90310)', alt: 'Kart limiti · tekrar denenecek', dot: '#B91C1C' },
+      { text: 'Kaplan Motors — ödeme beklemede', alt: 'iyzico onayı bekleniyor', dot: '#7a6f61' }
+    ];
+
+    // İşletmeler
+    const q = S.arama.toLowerCase();
+    const filtre = S.tenants.filter(t => !q || t.ad.toLowerCase().includes(q) || t.sub.includes(q));
+    const paketColor = { 'Yıllık': '#16a34a', 'Aylık': '#1d4ed8', 'Deneme': '#b45309' };
+    const isletmeRows = filtre.map(t => {
+      const acik = S.acik === t.id;
+      return {
+        ad: t.ad, subdomain: t.sub + '.galerim.app', paket: t.paket.toUpperCase(), paketColor: paketColor[t.paket],
+        baslangic: t.baslangic, bitis: t.bitis, kalan: t.kalan,
+        kalanColor: t.kalan <= 7 ? '#B91C1C' : (t.kalan <= 21 ? '#b45309' : '#16a34a'),
+        acik, detayLabel: acik ? 'Kapat' : 'Detay',
+        detay: () => this.setState({ acik: acik ? null : t.id }),
+        hediye7: () => { this.setState(s => ({ tenants: s.tenants.map(x => x.id === t.id ? Object.assign({}, x, { kalan: x.kalan + 7 }) : x) })); this.toast(t.ad + ' — 7 gün hediye eklendi 🎁'); },
+        hediye30: () => { this.setState(s => ({ tenants: s.tenants.map(x => x.id === t.id ? Object.assign({}, x, { kalan: x.kalan + 30 }) : x) })); this.toast(t.ad + ' — 30 gün hediye eklendi 🎁'); },
+        detaylar: [
+          { k: 'Yetkili', v: t.yetkili }, { k: 'Telefon', v: t.tel },
+          { k: 'E-posta', v: t.eposta }, { k: 'Son Giriş', v: t.sonGiris },
+          { k: 'Kayıtlı Araç', v: t.arac }, { k: 'Kullanıcı Sayısı', v: t.kullanici },
+          { k: 'Aldığı Paket', v: t.paket }, { k: 'Kalan Gün', v: t.kalan + ' gün' }
+        ]
+      };
+    });
+
+    // İşlem kaydı
+    const basarili = S.islemler.filter(i => i.durum === 'Başarılı');
+    const islemOzet = [
+      { label: 'Toplam Tahsilat', value: this.tl(basarili.reduce((a, i) => a + i.tutar, 0)) },
+      { label: 'Başarılı İşlem', value: basarili.length + ' / ' + S.islemler.length },
+      { label: 'Bekleyen / Başarısız', value: S.islemler.length - basarili.length }
+    ];
+    const durumColor = { 'Başarılı': '#16a34a', 'Başarısız': '#B91C1C', 'Beklemede': '#b45309' };
+    const islemRows = S.islemler.map(i => ({
+      no: i.no, isletme: i.isletme, paket: i.paket, tutar: this.tl(i.tutar), tarih: i.tarih,
+      durum: i.durum.toUpperCase(), durumColor: durumColor[i.durum]
+    }));
+
+    // Analitik
+    const analitikKart = [
+      { label: 'Toplam Araç Kaydı', value: '134', sub: 'Platform geneli' },
+      { label: 'Bu Ay Satılan Araç', value: '28', sub: 'Tüm işletmeler' },
+      { label: 'Platform Ciro Hacmi', value: '₺26,4M', sub: 'Bu ay işlenen satış' },
+      { label: 'Aktif Kullanıcı', value: '19', sub: 'Son 7 gün giriş yapan' },
+      { label: 'Ort. Stok Süresi', value: '31 gün', sub: 'Platform ortalaması' },
+      { label: 'Aylık→Yıllık Dönüşüm', value: '%42', sub: 'Son 3 ay' },
+      { label: 'Deneme→Ödeme Dönüşüm', value: '%61', sub: 'Son 3 ay' },
+      { label: 'Kayıp Oranı (Churn)', value: '%3,1', sub: 'Aylık ortalama' }
+    ];
+    const aktifData = [['Şen Otomotiv', 14], ['Yıldız Otomotiv', 11], ['Kaplan Motors', 8], ['Aydın Auto', 6], ['Demo Galeri', 4]];
+    const aktifBar = aktifData.map(d => ({ ad: d[0], n: d[1], w: Math.round(d[1] / 14 * 100) + '%' }));
+
+    // Ayarlar
+    const togglelar = Object.keys(S.toggles).map(k => {
+      const on = S.toggles[k];
+      const altlar = {
+        'Yeni üyelik kabulü': 'Kapatılırsa landing\'de satın alma durur',
+        'Deneme süresi otomatik uzatma': 'İlk hafta aktif olmayanlara +3 gün',
+        'Ödeme hatırlatma e-postaları': 'Bitişten 7 ve 1 gün önce',
+        'Bakım modu': 'Tüm tenant panelleri geçici kapatır'
+      };
+      return {
+        ad: k, alt: altlar[k], bg: on ? '#16a34a' : '#d6d0c8', knobLeft: on ? '20px' : '2px',
+        tik: () => { this.setState(s => ({ toggles: Object.assign({}, s.toggles, { [k]: !on }) })); this.toast(k + (on ? ' kapatıldı' : ' açıldı')); }
+      };
+    });
+
+    return {
+      navItems, pageTitle: pages[S.page],
+      pageGenel: S.page === 'genel', pageIsletme: S.page === 'isletme', pageIslem: S.page === 'islem',
+      pageAnalitik: S.page === 'analitik', pageAyar: S.page === 'ayar',
+      statCards, mrrBars, uyarilar,
+      arama: S.arama, aramaOn: (e) => this.setState({ arama: e.target.value }),
+      filtreSayi: filtre.length, isletmeRows,
+      islemOzet, islemRows, analitikKart, aktifBar, togglelar,
+      ayarAylik: this.field('ayar', 'aylik'), ayarYillik: this.field('ayar', 'yillik'), ayarDeneme: this.field('ayar', 'deneme'),
+      ayarKaydet: () => this.toast('Fiyat ayarları kaydedildi'),
+      toastGoster: !!S.toast, toastMesaj: S.toast
+    };
+  }
+}
+</script>
+
+
+</body></html>

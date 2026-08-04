@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#F4F5F7;color:#101828;font-family:'Manrope',sans-serif;}
+a{color:#3538CD;text-decoration:none;} a:hover{color:#2A2CA8;text-decoration:underline;}
+*{box-sizing:border-box;}
+input,select,button{font-family:'Manrope',sans-serif;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+</style>
+</helmet>
+<div style="min-height:100vh">
+  <header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid #E7E9EF">
+    <div style="max-width:1280px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;gap:28px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:11px;background:{{accent}};display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;letter-spacing:-0.5px">OV</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.5px">otovitrin</div>
+      </div>
+      <nav style="display:flex;gap:22px;font-size:14px;font-weight:600;color:#475467">
+        <span style="color:#101828;border-bottom:2px solid {{accent}};padding:22px 0">Otomobil</span>
+        <span style="padding:22px 0;cursor:pointer" style-hover="color:#101828">SUV &amp; Pickup</span>
+        <span style="padding:22px 0;cursor:pointer" style-hover="color:#101828">Motosiklet</span>
+        <span style="padding:22px 0;cursor:pointer" style-hover="color:#101828">Ticari</span>
+      </nav>
+      <div style="flex:1"></div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <input placeholder="Marka, model veya galeri ara" style="width:260px;height:40px;border:1px solid #E0E3EB;border-radius:12px;padding:0 14px;font-size:13.5px;background:#F7F8FA;outline:none" value="{{query}}" onInput="{{onQuery}}">
+        <button style="height:40px;padding:0 18px;border:none;border-radius:12px;background:{{accent}};color:#fff;font-weight:700;font-size:13.5px;cursor:pointer" style-hover="filter:brightness(1.1)">+ İlan Ver</button>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width:1280px;margin:0 auto;padding:28px 28px 64px">
+    <div style="font-size:12.5px;color:#98A2B3;font-weight:600;margin-bottom:6px">Vasıta · Otomobil</div>
+    <div style="display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap">
+      <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;letter-spacing:-1px">Otomobil İlanları</h1>
+      <div style="font-size:14px;color:#667085;font-weight:600;padding-bottom:5px">{{count}} ilan</div>
+      <sc-if value="{{activeGalleryName}}" hint-placeholder-val="{{false}}">
+        <button onClick="{{clearGallery}}" style="display:flex;align-items:center;gap:8px;border:1px solid {{accent}};background:#EEF0FF;color:{{accent}};border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:700;cursor:pointer;margin-bottom:2px">{{activeGalleryName}} <span style="font-size:14px;line-height:1">×</span></button>
+      </sc-if>
+      <div style="flex:1"></div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <button onClick="{{toggleGrouped}}" style="{{groupBtnStyle}}">Galeriye göre grupla</button>
+        <select value="{{sort}}" onChange="{{onSort}}" style="height:38px;border:1px solid #E0E3EB;border-radius:11px;background:#fff;padding:0 10px;font-size:13px;font-weight:600;color:#344054;cursor:pointer;outline:none">
+          <option value="featured">Öne çıkanlar</option>
+          <option value="priceAsc">Fiyat (artan)</option>
+          <option value="priceDesc">Fiyat (azalan)</option>
+          <option value="yearDesc">Yıl (en yeni)</option>
+          <option value="kmAsc">Kilometre (en düşük)</option>
+        </select>
+        <div style="display:flex;background:#fff;border:1px solid #E0E3EB;border-radius:11px;padding:3px;gap:2px">
+          <button onClick="{{setGrid}}" style="{{gridBtnStyle}}" title="Kart görünümü">▦</button>
+          <button onClick="{{setList}}" style="{{listBtnStyle}}" title="Liste görünümü">☰</button>
+        </div>
+      </div>
+    </div>
+
+    <sc-if value="{{showFeatured}}" hint-placeholder-val="{{true}}">
+      <div style="margin-top:26px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700">Öne Çıkan Galeriler</div>
+          <div style="height:1px;flex:1;background:#E7E9EF"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+          <sc-for list="{{galleryCards}}" as="g" hint-placeholder-count="4">
+            <div onClick="{{g.onSelect}}" style="{{g.cardStyle}}" style-hover="transform:translateY(-2px);box-shadow:0 10px 28px rgba(16,24,40,0.09)">
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="width:44px;height:44px;border-radius:13px;background:{{g.tint}};color:{{g.color}};display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px">{{g.initials}}</div>
+                <div>
+                  <div style="font-weight:800;font-size:14px">{{g.name}}</div>
+                  <div style="font-size:12px;color:#667085;font-weight:600">{{g.city}} · {{g.since}}'den beri</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-size:12.5px;font-weight:700">
+                <span style="color:#475467">{{g.count}} ilan</span>
+                <span style="display:flex;align-items:center;gap:4px;color:#B54708;background:#FFF6E5;border-radius:999px;padding:3px 9px">★ {{g.rating}}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <div style="display:flex;gap:24px;margin-top:28px;align-items:flex-start">
+      <aside style="width:256px;flex-shrink:0;position:sticky;top:92px;display:flex;flex-direction:column;gap:18px">
+        <div style="background:#fff;border:1px solid #E7E9EF;border-radius:18px;padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px">Filtreler</div>
+            <button onClick="{{clearFilters}}" style="border:none;background:none;color:{{accent}};font-size:12.5px;font-weight:700;cursor:pointer;padding:0">Temizle</button>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:#98A2B3;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Marka</div>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:18px">
+            <sc-for list="{{brandRows}}" as="b" hint-placeholder-count="5">
+              <label style="display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:#344054;cursor:pointer">
+                <input type="checkbox" checked="{{b.checked}}" onChange="{{b.onToggle}}" style="width:16px;height:16px;accent-color:{{accent}};cursor:pointer">
+                <span style="flex:1">{{b.name}}</span>
+                <span style="font-size:11.5px;color:#98A2B3;font-weight:700">{{b.count}}</span>
+              </label>
+            </sc-for>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:#98A2B3;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Fiyat (TL)</div>
+          <div style="display:flex;gap:8px;margin-bottom:18px">
+            <input placeholder="Min" value="{{priceMin}}" onInput="{{onPriceMin}}" style="width:50%;height:36px;border:1px solid #E0E3EB;border-radius:10px;padding:0 10px;font-size:13px;outline:none">
+            <input placeholder="Maks" value="{{priceMax}}" onInput="{{onPriceMax}}" style="width:50%;height:36px;border:1px solid #E0E3EB;border-radius:10px;padding:0 10px;font-size:13px;outline:none">
+          </div>
+          <div style="font-size:12px;font-weight:800;color:#98A2B3;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Yıl (en az)</div>
+          <select value="{{yearMin}}" onChange="{{onYearMin}}" style="width:100%;height:36px;border:1px solid #E0E3EB;border-radius:10px;background:#fff;padding:0 8px;font-size:13px;font-weight:600;color:#344054;outline:none;margin-bottom:18px">
+            <option value="">Fark etmez</option>
+            <option value="2024">2024 ve üzeri</option>
+            <option value="2022">2022 ve üzeri</option>
+            <option value="2020">2020 ve üzeri</option>
+            <option value="2018">2018 ve üzeri</option>
+          </select>
+          <div style="font-size:12px;font-weight:800;color:#98A2B3;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Yakıt</div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px">
+            <sc-for list="{{fuelChips}}" as="c" hint-placeholder-count="4">
+              <button onClick="{{c.onToggle}}" style="{{c.style}}">{{c.label}}</button>
+            </sc-for>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:#98A2B3;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Vites</div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px">
+            <sc-for list="{{gearChips}}" as="c" hint-placeholder-count="2">
+              <button onClick="{{c.onToggle}}" style="{{c.style}}">{{c.label}}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#1B1D3A,#33357A);border-radius:18px;padding:20px;color:#fff">
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;margin-bottom:6px">Galerinizi ekleyin</div>
+          <div style="font-size:12.5px;color:#C9CCF2;line-height:1.5;margin-bottom:14px">İlanlarınızı binlerce alıcıya ulaştırın, vitrin sayfanızı oluşturun.</div>
+          <button style="height:36px;padding:0 16px;border:none;border-radius:10px;background:#fff;color:#1B1D3A;font-weight:800;font-size:12.5px;cursor:pointer">Başvur</button>
+        </div>
+      </aside>
+
+      <main style="flex:1;min-width:0">
+        <sc-if value="{{noResults}}" hint-placeholder-val="{{false}}">
+          <div style="background:#fff;border:1px dashed #D0D5DD;border-radius:18px;padding:60px;text-align:center;color:#667085">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#101828;margin-bottom:6px">Sonuç bulunamadı</div>
+            <div style="font-size:13.5px;margin-bottom:16px">Filtreleri gevşeterek tekrar deneyin.</div>
+            <button onClick="{{clearFilters}}" style="height:38px;padding:0 18px;border:none;border-radius:11px;background:{{accent}};color:#fff;font-weight:700;font-size:13px;cursor:pointer">Filtreleri temizle</button>
+          </div>
+        </sc-if>
+        <div style="display:flex;flex-direction:column;gap:28px">
+          <sc-for list="{{groups}}" as="grp" hint-placeholder-count="1">
+            <div>
+              <sc-if value="{{grp.header}}" hint-placeholder-val="{{false}}">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+                  <div style="width:34px;height:34px;border-radius:10px;background:{{grp.tint}};color:{{grp.color}};display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px">{{grp.initials}}</div>
+                  <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px">{{grp.header}}</div>
+                  <div style="font-size:12.5px;color:#667085;font-weight:700;background:#fff;border:1px solid #E7E9EF;border-radius:999px;padding:3px 10px">{{grp.countText}}</div>
+                  <div style="height:1px;flex:1;background:#E7E9EF"></div>
+                </div>
+              </sc-if>
+              <sc-if value="{{isGrid}}" hint-placeholder-val="{{true}}">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+                  <sc-for list="{{grp.items}}" as="c" hint-placeholder-count="6">
+                    <div style="background:#fff;border:1px solid #E7E9EF;border-radius:18px;overflow:hidden;transition:box-shadow .2s,transform .2s;animation:fadeUp .35s ease both" style-hover="box-shadow:0 14px 34px rgba(16,24,40,0.1);transform:translateY(-3px)">
+                      <div style="position:relative;height:180px">
+                        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{c.slotId}}" shape="rect" placeholder="{{c.photoHint}}" hint-size="100%,180px" style="position:absolute;inset:0"></x-import>
+                        <sc-if value="{{c.featured}}" hint-placeholder-val="{{false}}">
+                          <div style="position:absolute;top:10px;left:10px;background:#FFB020;color:#3D2600;font-size:11px;font-weight:800;border-radius:999px;padding:4px 10px;pointer-events:none">ÖNE ÇIKAN</div>
+                        </sc-if>
+                        <button onClick="{{c.onFav}}" style="position:absolute;top:10px;right:10px;width:32px;height:32px;border:none;border-radius:999px;background:rgba(255,255,255,0.94);cursor:pointer;font-size:15px;color:{{c.favColor}};display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(16,24,40,0.12)">{{c.favIcon}}</button>
+                      </div>
+                      <div style="padding:14px 16px 16px">
+                        <a href="./İlan Detay.dc.html" style="display:block;color:#101828;font-weight:800;font-size:14.5px;line-height:1.35;min-height:39px" style-hover="color:#3538CD;text-decoration:none">{{c.title}}</a>
+                        <div style="font-size:12.5px;color:#667085;font-weight:600;margin-top:5px">{{c.year}} · {{c.kmText}} km · {{c.fuel}} · {{c.gear}}</div>
+                        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:12px">
+                          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:{{accent}}">{{c.priceText}}</div>
+                          <div style="font-size:11.5px;color:#98A2B3;font-weight:700">{{c.city}}</div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:7px;margin-top:12px;padding-top:11px;border-top:1px solid #F0F1F5">
+                          <div style="width:22px;height:22px;border-radius:7px;background:{{c.gTint}};color:{{c.gColor}};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800">{{c.gInitials}}</div>
+                          <div style="font-size:12px;font-weight:700;color:#475467">{{c.gName}}</div>
+                          <div style="margin-left:auto;font-size:11px;color:#98A2B3;font-weight:600">{{c.date}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{isList}}" hint-placeholder-val="{{false}}">
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <sc-for list="{{grp.items}}" as="c" hint-placeholder-count="6">
+                    <div style="background:#fff;border:1px solid #E7E9EF;border-radius:16px;padding:12px;display:flex;gap:16px;align-items:center;transition:box-shadow .2s;animation:fadeUp .35s ease both" style-hover="box-shadow:0 10px 26px rgba(16,24,40,0.09)">
+                      <div style="position:relative;width:170px;height:106px;flex-shrink:0">
+                        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{c.slotId}}" shape="rounded" radius="10" placeholder="{{c.photoHint}}" hint-size="170px,106px" style="position:absolute;inset:0"></x-import>
+                        <sc-if value="{{c.featured}}" hint-placeholder-val="{{false}}">
+                          <div style="position:absolute;top:8px;left:8px;background:#FFB020;color:#3D2600;font-size:10px;font-weight:800;border-radius:999px;padding:3px 8px;pointer-events:none">ÖNE ÇIKAN</div>
+                        </sc-if>
+                      </div>
+                      <div style="flex:1;min-width:0">
+                        <a href="./İlan Detay.dc.html" style="display:block;color:#101828;font-weight:800;font-size:15px" style-hover="color:#3538CD;text-decoration:none">{{c.title}}</a>
+                        <div style="font-size:12.5px;color:#667085;font-weight:600;margin-top:4px">{{c.year}} · {{c.kmText}} km · {{c.fuel}} · {{c.gear}}</div>
+                        <div style="display:flex;align-items:center;gap:7px;margin-top:10px">
+                          <div style="width:20px;height:20px;border-radius:6px;background:{{c.gTint}};color:{{c.gColor}};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800">{{c.gInitials}}</div>
+                          <div style="font-size:12px;font-weight:700;color:#475467">{{c.gName}}</div>
+                          <div style="font-size:11.5px;color:#98A2B3;font-weight:600">· {{c.city}} · {{c.date}}</div>
+                        </div>
+                      </div>
+                      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;padding-right:8px">
+                        <button onClick="{{c.onFav}}" style="width:32px;height:32px;border:1px solid #E7E9EF;border-radius:999px;background:#fff;cursor:pointer;font-size:14px;color:{{c.favColor}};display:flex;align-items:center;justify-content:center">{{c.favIcon}}</button>
+                        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:{{accent}}">{{c.priceText}}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:900},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#3538CD&quot;,&quot;options&quot;:[&quot;#3538CD&quot;,&quot;#0E7A5F&quot;,&quot;#B42318&quot;,&quot;#0B5CAD&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Görünüm&quot;},&quot;showFeatured&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Görünüm&quot;}}">
+class Component extends DCLogic {
+  state = { view: 'grid', grouped: false, sort: 'featured', query: '', brands: [], fuels: [], gears: [], priceMin: '', priceMax: '', yearMin: '', gallery: null, favs: {} };
+
+  galleries = [
+    { id: 'yildiz', name: 'Yıldız Otomotiv', city: 'İstanbul', since: 2009, rating: '4.8', color: '#3538CD', tint: '#EEF0FF' },
+    { id: 'marmara', name: 'Marmara Motors', city: 'Bursa', since: 2014, rating: '4.6', color: '#B42318', tint: '#FEF0EF' },
+    { id: 'anadolu', name: 'Anadolu Garaj', city: 'Ankara', since: 2011, rating: '4.9', color: '#067647', tint: '#E9F8F1' },
+    { id: 'prestij', name: 'Prestij Auto', city: 'İzmir', since: 2017, rating: '4.7', color: '#B54708', tint: '#FFF6E5' },
+  ];
+
+  cars = [
+    { id: 1, brand: 'BMW', title: 'BMW 320i M Sport', year: 2022, km: 41000, fuel: 'Benzin', gear: 'Otomatik', price: 2450000, city: 'İstanbul', gid: 'yildiz', featured: true, date: 'Bugün' },
+    { id: 2, brand: 'Mercedes', title: 'Mercedes C200 AMG Line', year: 2023, km: 18500, fuel: 'Hibrit', gear: 'Otomatik', price: 3150000, city: 'İstanbul', gid: 'yildiz', featured: false, date: 'Bugün' },
+    { id: 3, brand: 'Audi', title: 'Audi A3 Sportback 35 TFSI', year: 2021, km: 56000, fuel: 'Benzin', gear: 'Otomatik', price: 1890000, city: 'Bursa', gid: 'marmara', featured: false, date: 'Dün' },
+    { id: 4, brand: 'Volkswagen', title: 'Volkswagen Passat 1.5 TSI Elegance', year: 2022, km: 38000, fuel: 'Benzin', gear: 'Otomatik', price: 2100000, city: 'Bursa', gid: 'marmara', featured: true, date: 'Dün' },
+    { id: 5, brand: 'Toyota', title: 'Toyota Corolla 1.8 Hybrid Dream', year: 2024, km: 9200, fuel: 'Hibrit', gear: 'Otomatik', price: 1720000, city: 'Ankara', gid: 'anadolu', featured: false, date: '2 gün önce' },
+    { id: 6, brand: 'Honda', title: 'Honda Civic 1.5 VTEC Executive', year: 2023, km: 22000, fuel: 'Benzin', gear: 'Otomatik', price: 1950000, city: 'Ankara', gid: 'anadolu', featured: false, date: '2 gün önce' },
+    { id: 7, brand: 'Renault', title: 'Renault Clio 1.0 TCe Touch', year: 2022, km: 47000, fuel: 'Benzin', gear: 'Manuel', price: 985000, city: 'İzmir', gid: 'prestij', featured: false, date: '3 gün önce' },
+    { id: 8, brand: 'Fiat', title: 'Fiat Egea 1.4 Fire Urban', year: 2021, km: 68000, fuel: 'Benzin', gear: 'Manuel', price: 812000, city: 'İzmir', gid: 'prestij', featured: false, date: '3 gün önce' },
+    { id: 9, brand: 'Peugeot', title: 'Peugeot 3008 1.5 BlueHDi GT', year: 2023, km: 26500, fuel: 'Dizel', gear: 'Otomatik', price: 2280000, city: 'İstanbul', gid: 'yildiz', featured: false, date: '4 gün önce' },
+    { id: 10, brand: 'Hyundai', title: 'Hyundai Tucson 1.6 T-GDI Elite', year: 2024, km: 12000, fuel: 'Hibrit', gear: 'Otomatik', price: 2620000, city: 'Ankara', gid: 'anadolu', featured: true, date: '5 gün önce' },
+    { id: 11, brand: 'Ford', title: 'Ford Focus 1.5 EcoBlue Titanium', year: 2020, km: 89000, fuel: 'Dizel', gear: 'Otomatik', price: 1140000, city: 'Bursa', gid: 'marmara', featured: false, date: '1 hafta önce' },
+    { id: 12, brand: 'Tesla', title: 'Tesla Model Y Long Range', year: 2023, km: 31000, fuel: 'Elektrik', gear: 'Otomatik', price: 2890000, city: 'İzmir', gid: 'prestij', featured: false, date: '1 hafta önce' },
+  ];
+
+  chip(label, on, onToggle, accent) {
+    const base = 'display:inline-block;border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:700;cursor:pointer;';
+    return { label, onToggle, style: on
+      ? base + `border:1px solid ${accent};background:${accent};color:#fff`
+      : base + 'border:1px solid #E0E3EB;background:#fff;color:#475467' };
+  }
+
+  toggleIn(key, val) {
+    this.setState(s => {
+      const arr = s[key].includes(val) ? s[key].filter(x => x !== val) : [...s[key], val];
+      return { [key]: arr };
+    });
+  }
+
+  renderVals() {
+    const accent = this.props.accent ?? '#3538CD';
+    const s = this.state;
+    const gMap = Object.fromEntries(this.galleries.map(g => [g.id, g]));
+    const fmt = n => n.toLocaleString('tr-TR');
+
+    let list = this.cars.filter(c => {
+      if (s.gallery && c.gid !== s.gallery) return false;
+      if (s.brands.length && !s.brands.includes(c.brand)) return false;
+      if (s.fuels.length && !s.fuels.includes(c.fuel)) return false;
+      if (s.gears.length && !s.gears.includes(c.gear)) return false;
+      if (s.priceMin && c.price < +s.priceMin) return false;
+      if (s.priceMax && c.price > +s.priceMax) return false;
+      if (s.yearMin && c.year < +s.yearMin) return false;
+      if (s.query) {
+        const q = s.query.toLowerCase();
+        if (!c.title.toLowerCase().includes(q) && !gMap[c.gid].name.toLowerCase().includes(q)) return false;
+      }
+      return true;
+    });
+
+    const sorters = {
+      featured: (a, b) => (b.featured - a.featured) || a.id - b.id,
+      priceAsc: (a, b) => a.price - b.price,
+      priceDesc: (a, b) => b.price - a.price,
+      yearDesc: (a, b) => b.year - a.year,
+      kmAsc: (a, b) => a.km - b.km,
+    };
+    list = [...list].sort(sorters[s.sort]);
+
+    const enrich = c => {
+      const g = gMap[c.gid];
+      const fav = !!s.favs[c.id];
+      return {
+        ...c,
+        slotId: 'car-' + c.id,
+        photoHint: c.title + ' fotoğrafı',
+        kmText: fmt(c.km),
+        priceText: fmt(c.price) + ' TL',
+        gName: g.name, gColor: g.color, gTint: g.tint,
+        gInitials: g.name.split(' ').map(w => w[0]).join('').slice(0, 2),
+        favIcon: fav ? '♥' : '♡',
+        favColor: fav ? '#E11D48' : '#98A2B3',
+        onFav: () => this.setState(st => ({ favs: { ...st.favs, [c.id]: !st.favs[c.id] } })),
+      };
+    };
+    const items = list.map(enrich);
+
+    let groups;
+    if (s.grouped) {
+      groups = this.galleries
+        .map(g => ({ g, its: items.filter(c => c.gid === g.id) }))
+        .filter(x => x.its.length)
+        .map(x => ({
+          header: x.g.name, countText: x.its.length + ' ilan',
+          initials: x.g.name.split(' ').map(w => w[0]).join('').slice(0, 2),
+          color: x.g.color, tint: x.g.tint, items: x.its,
+        }));
+    } else {
+      groups = items.length ? [{ header: null, items }] : [];
+    }
+
+    const brandCounts = {};
+    this.cars.forEach(c => { brandCounts[c.brand] = (brandCounts[c.brand] || 0) + 1; });
+    const brandRows = Object.keys(brandCounts).sort().map(name => ({
+      name, count: brandCounts[name], checked: s.brands.includes(name),
+      onToggle: () => this.toggleIn('brands', name),
+    }));
+
+    const fuelChips = ['Benzin', 'Dizel', 'Hibrit', 'Elektrik'].map(f =>
+      this.chip(f, s.fuels.includes(f), () => this.toggleIn('fuels', f), accent));
+    const gearChips = ['Otomatik', 'Manuel'].map(g =>
+      this.chip(g, s.gears.includes(g), () => this.toggleIn('gears', g), accent));
+
+    const galleryCards = this.galleries.map(g => {
+      const active = s.gallery === g.id;
+      return {
+        ...g,
+        initials: g.name.split(' ').map(w => w[0]).join('').slice(0, 2),
+        count: this.cars.filter(c => c.gid === g.id).length,
+        onSelect: () => this.setState({ gallery: active ? null : g.id }),
+        cardStyle: `background:#fff;border-radius:16px;padding:16px;cursor:pointer;transition:all .2s;border:1.5px solid ${active ? accent : '#E7E9EF'};${active ? 'box-shadow:0 8px 24px rgba(53,56,205,0.14);' : ''}`,
+      };
+    });
+
+    const toggleBase = 'height:38px;padding:0 14px;border-radius:11px;font-size:13px;font-weight:700;cursor:pointer;';
+    const viewBase = 'width:34px;height:30px;border:none;border-radius:8px;font-size:14px;cursor:pointer;';
+
+    return {
+      accent,
+      showFeatured: this.props.showFeatured ?? true,
+      count: items.length,
+      noResults: items.length === 0,
+      groups, brandRows, fuelChips, gearChips, galleryCards,
+      isGrid: s.view === 'grid', isList: s.view === 'list',
+      sort: s.sort, query: s.query, priceMin: s.priceMin, priceMax: s.priceMax, yearMin: s.yearMin,
+      activeGalleryName: s.gallery ? gMap[s.gallery].name : null,
+      clearGallery: () => this.setState({ gallery: null }),
+      groupBtnStyle: toggleBase + (s.grouped
+        ? `border:1px solid ${accent};background:${accent};color:#fff`
+        : 'border:1px solid #E0E3EB;background:#fff;color:#344054'),
+      gridBtnStyle: viewBase + (s.view === 'grid' ? `background:${accent};color:#fff` : 'background:transparent;color:#98A2B3'),
+      listBtnStyle: viewBase + (s.view === 'list' ? `background:${accent};color:#fff` : 'background:transparent;color:#98A2B3'),
+      setGrid: () => this.setState({ view: 'grid' }),
+      setList: () => this.setState({ view: 'list' }),
+      toggleGrouped: () => this.setState(st => ({ grouped: !st.grouped })),
+      onSort: e => this.setState({ sort: e.target.value }),
+      onQuery: e => this.setState({ query: e.target.value }),
+      onPriceMin: e => this.setState({ priceMin: e.target.value.replace(/\D/g, '') }),
+      onPriceMax: e => this.setState({ priceMax: e.target.value.replace(/\D/g, '') }),
+      onYearMin: e => this.setState({ yearMin: e.target.value }),
+      clearFilters: () => this.setState({ brands: [], fuels: [], gears: [], priceMin: '', priceMax: '', yearMin: '', gallery: null, query: '' }),
+    };
+  }
+}
+</script>
+</body>
+</html>

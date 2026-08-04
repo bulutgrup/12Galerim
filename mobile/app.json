@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Galerim",
+    "slug": "galerim-mobile",
+    "version": "26.08.04.05",
+    "orientation": "portrait",
+    "icon": "./icon.png",
+    "splash": {
+      "image": "./icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1a1a1a"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bulutgrup.galerim"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./icon.png",
+        "backgroundColor": "#1a1a1a"
+      },
+      "package": "com.bulutgrup.galerim",
+      "versionCode": 7
+    }
+  }
+}

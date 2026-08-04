@@ -1,0 +1,42 @@
+# Dependencies
+mobile/node_modules/
+node_modules/
+tenant-panel/node_modules/
+super-admin/node_modules/
+landing/node_modules/
+
+# Android Build
+mobile/android/app/build/
+mobile/android/build/
+mobile/android/.gradle/
+mobile/android/app/.cxx/
+
+# iOS Build
+mobile/ios/Pods/
+mobile/ios/build/
+
+# Metro
+mobile/.metro-health-check*
+
+# Generated AAB (yeniden oluşturulabilir)
+galerim.aab
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+*.iml
+.vscode/
+
+# Env files (hassas bilgiler varsa)
+# .env
+
+# Temp files
+*.log
+*.tmp
+scratch_matched_*.txt
+
+# ÖNEMLİ: Keystore dosyaları DAHİL edilecek (gitignore'dan hariç tutulmuyor)
+# mobile/android/app/galerim-release.keystore → REPO'DA SAKLANACAK

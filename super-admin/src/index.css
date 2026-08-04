@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: #f4f2ef;
+  color: #191512;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f2ef;
+}
+::-webkit-scrollbar-thumb {
+  background: #ddd6cc;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c7bfae;
+}
+
+/* Common Classes */
+.btn-primary {
+  background: linear-gradient(120deg, #1a1a1a, #B91C1C);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: #fff;
+  border: 1px solid #ddd6cc;
+  color: #191512;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-secondary:hover {
+  background: #f6f1ea;
+}
+
+.input-field {
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid #ddd6cc;
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-size: 13px;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-field:focus {
+  border-color: #B91C1C;
+}
+
+/* Page transitions */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sidebar Layout & Responsive Design */
+.sidebar {
+  transition: all 0.3s ease;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #5c554c;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background: #faf8f5;
+  color: #191512;
+}
+
+.sidebar-link.active {
+  background: #faf3ee;
+  color: #B91C1C;
+}
+
+/* Responsive Rules */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    top: 64px;
+    left: -240px;
+    bottom: 0;
+    z-index: 35;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.05);
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  .mobile-menu-btn {
+    display: block !important;
+  }
+}
