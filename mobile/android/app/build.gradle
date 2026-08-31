@@ -88,8 +88,8 @@ android {
         applicationId 'com.bulutgrup.galerim'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10
-        versionName "26.08.31.03"
+        versionCode 11
+        versionName "26.08.31.04"
 
         buildConfigField("boolean", "REACT_NATIVE_UNSTABLE_USE_RUNTIME_SCHEDULER_ALWAYS", (findProperty("reactNative.unstable_useRuntimeSchedulerAlways") ?: true).toString())
         externalNativeBuild {
@@ -164,6 +164,13 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
+    if (hasProperty('reactNativeLibs')) {
+        implementation("com.facebook.fresco:fresco:${reactAndroidLibs.versions.fresco.get()}")
+        implementation("com.facebook.fresco:imagepipeline-okhttp3:${reactAndroidLibs.versions.fresco.get()}")
+        implementation("com.facebook.fresco:ui-common:${reactAndroidLibs.versions.fresco.get()}")
+        implementation("com.facebook.fresco:animated-gif:${reactAndroidLibs.versions.fresco.get()}")
+    }
+
     def isGifEnabled = (findProperty('expo.gif.enabled') ?: "") == "true";
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: "") == "true";
     def isWebpAnimatedEnabled = (findProperty('expo.webp.animated') ?: "") == "true";
@@ -214,15 +221,36 @@ tasks.configureEach { task ->
     }
 }
 
-// Post-build: 16KB ZIP alignment for .so files in final AAB
+// Post-build: 16KB BundleConfig + ZIP alignment + re-sign for final AAB
 tasks.register('repackageAab16kb') {
     dependsOn 'signReleaseBundle'
     doLast {
         def aabFile = file("${project.layout.buildDirectory.asFile.get()}/outputs/bundle/release/app-release.aab")
-        println "Aligning AAB ZIP entries for 16KB page size..."
+        def tmpBcFile = file("${aabFile.parent}/_tmp_bc.aab")
+
+        println "1. Patching BundleConfig.pb (+PAGE_ALIGNMENT_16K)..."
+        exec {
+            commandLine 'python3', "${projectDir}/patch_bundleconfig_16kb.py", aabFile.absolutePath, tmpBcFile.absolutePath
+        }
+        tmpBcFile.renameTo(aabFile)
+
+        println "2. Aligning AAB ZIP entries for 16KB page size..."
         exec {
             commandLine 'python3', "${projectDir}/repackage_aab.py", aabFile.absolutePath
         }
+
+        println "3. Re-signing AAB with jarsigner..."
+        if (project.hasProperty('GALERIM_RELEASE_STORE_FILE')) {
+            exec {
+                commandLine 'jarsigner',
+                    '-keystore', file(GALERIM_RELEASE_STORE_FILE).absolutePath,
+                    '-storepass', GALERIM_RELEASE_STORE_PASSWORD,
+                    '-keypass', GALERIM_RELEASE_KEY_PASSWORD,
+                    aabFile.absolutePath,
+                    GALERIM_RELEASE_KEY_ALIAS
+            }
+        }
+        println "16KB AAB pipeline complete!"
     }
 }
 
