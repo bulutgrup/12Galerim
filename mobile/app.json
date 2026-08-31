@@ -2,7 +2,7 @@
   "expo": {
     "name": "Galerim",
     "slug": "galerim-mobile",
-    "version": "26.08.04.05",
+    "version": "26.08.31.01",
     "orientation": "portrait",
     "icon": "./icon.png",
     "splash": {
@@ -21,7 +21,7 @@
         "backgroundColor": "#1a1a1a"
       },
       "package": "com.bulutgrup.galerim",
-      "versionCode": 7
+      "versionCode": 8
     }
   }
 }
