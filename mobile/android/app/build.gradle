@@ -88,8 +88,8 @@ android {
         applicationId 'com.bulutgrup.galerim'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 8
-        versionName "26.08.31.01"
+        versionCode 9
+        versionName "26.08.31.02"
 
         buildConfigField("boolean", "REACT_NATIVE_UNSTABLE_USE_RUNTIME_SCHEDULER_ALWAYS", (findProperty("reactNative.unstable_useRuntimeSchedulerAlways") ?: true).toString())
         externalNativeBuild {
@@ -134,6 +134,9 @@ android {
         jniLibs {
             useLegacyPackaging = false
         }
+    }
+    aaptOptions {
+        noCompress 'so'
     }
 }
 
@@ -208,5 +211,24 @@ tasks.register('alignNativeLibs') {
 tasks.configureEach { task ->
     if (task.name == 'packageReleaseBundle' || task.name == 'packageReleaseApk') {
         task.dependsOn 'alignNativeLibs'
+    }
+}
+
+// Post-build: 16KB ZIP alignment for .so files in final AAB
+tasks.register('repackageAab16kb') {
+    dependsOn 'signReleaseBundle'
+    doLast {
+        def aabFile = file("${project.layout.buildDirectory.asFile.get()}/outputs/bundle/release/app-release.aab")
+        println "Aligning AAB ZIP entries for 16KB page size..."
+        exec {
+            commandLine 'python3', "${projectDir}/repackage_aab.py", aabFile.absolutePath
+        }
+    }
+}
+
+// Hook 16KB ZIP alignment into the bundleRelease pipeline
+tasks.configureEach { task ->
+    if (task.name == 'bundleRelease') {
+        task.dependsOn 'repackageAab16kb'
     }
 }
